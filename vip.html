@@ -12,21 +12,25 @@ body{
   color:#ffffff;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   display:flex;
-  flex-direction:column;
+  justify-content:center;
   align-items:center;
-  padding:40px 20px;
+  min-height:100vh;
   text-align:center;
+}
+
+.container{
+  max-width:520px;
+  width:90%;
 }
 
 h1{
   font-size:34px;
-  margin-bottom:18px;
+  margin-bottom:16px;
   letter-spacing:1px;
 }
 
 .description{
   opacity:.75;
-  max-width:480px;
   line-height:1.5;
   margin-bottom:28px;
 }
@@ -34,52 +38,53 @@ h1{
 .box{
   background:#121212;
   border:1px solid #2a2a2a;
-  border-radius:20px;
-  padding:26px;
-  max-width:520px;
-  width:100%;
-  text-align:left;
+  border-radius:22px;
+  padding:28px 24px;
 }
 
 .box p{
   margin:10px 0;
-  line-height:1.4;
+  line-height:1.45;
+}
+
+.includes{
+  margin-bottom:18px;
 }
 
 .price-title{
-  text-align:center;
-  margin-top:24px;
-  opacity:.7;
+  margin-top:20px;
+  opacity:.65;
 }
 
 .price{
-  text-align:center;
-  font-size:42px;
+  font-size:44px;
   font-weight:700;
-  margin:10px 0 20px 0;
+  margin:8px 0 18px 0;
 }
 
 .steps{
-  text-align:left;
-  margin-top:10px;
   opacity:.85;
+  margin-bottom:18px;
 }
 
 .qr{
-  margin-top:24px;
-  height:160px;
-  border-radius:16px;
+  margin:0 auto;
+  height:170px;
+  width:170px;
+  border-radius:18px;
   background:#1e1e1e;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:14px;
+  font-size:13px;
   opacity:.5;
 }
 </style>
 </head>
 
 <body>
+
+<div class="container">
 
 <h1>Passe Premium</h1>
 
@@ -89,18 +94,13 @@ Transforme sua viagem em uma experiência premium.
 
 <div class="box">
 
-<p><strong>Inclui:</strong></p>
+<p class="includes"><strong>Inclui:</strong></p>
 
 <p>🎵 Música Personalizada — escolha o artista ou estilo que quer ouvir</p>
-
 <p>❄️ Clima Sob Medida — mais frio, padrão, mais quente ou ar desligado</p>
-
 <p>🎮 Jogos de Bordo — GTA San Andreas, Mario Kart, Futebol e clássicos retrô (N64/PlayStation)</p>
-
 <p>🥤 Bebidas & Snacks — escolha 2 itens: água, mini Coca-Cola, mini Ruffles e KitKat</p>
-
 <p>🎬 Modo Cinema — assista no tablet a conteúdos do Disney+ e HBO Max</p>
-
 <p>💼 Modo Executivo — carregamento ultrarrápido com powerbank, silêncio sob solicitação e atendimento discreto</p>
 
 <div class="price-title">Valor por viagem</div>
@@ -116,6 +116,8 @@ Transforme sua viagem em uma experiência premium.
 
 <div class="qr">
 QR Code Pix aqui
+</div>
+
 </div>
 
 </div>
