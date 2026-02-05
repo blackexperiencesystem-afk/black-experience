@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pagamento da Fotografia</title>
+<title>Pagamento Fotografia</title>
 
 <style>
 body{
   margin:0;
   font-family: Arial, Helvetica, sans-serif;
-  background:#0b0b0b;
-  color:#ffffff;
+  background:#000;
+  color:#fff;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -24,44 +24,34 @@ body{
 }
 
 h1{
-  font-size:32px;
-  letter-spacing:2px;
-  margin-bottom:12px;
+  font-size:34px;
+  margin-bottom:10px;
 }
 
 .subtitle{
-  opacity:.7;
+  opacity:.75;
   margin-bottom:24px;
   line-height:1.5;
 }
 
-.qr-box{
+.qr{
   background:#111;
   border:1px solid #333;
   border-radius:22px;
   padding:24px;
   display:flex;
   justify-content:center;
-  align-items:center;
 }
 
-.qr-box img{
+.qr img{
   width:260px;
-  height:auto;
-  border-radius:14px;
-}
-
-.price{
-  margin-top:18px;
-  font-size:22px;
-  font-weight:bold;
+  border-radius:12px;
 }
 
 .note{
-  margin-top:18px;
+  margin-top:22px;
+  opacity:.7;
   font-size:14px;
-  opacity:.6;
-  line-height:1.4;
 }
 </style>
 </head>
@@ -70,24 +60,20 @@ h1{
 
 <div class="container">
 
-<h1>Pagamento da Fotografia</h1>
+<h1>Pagamento Fotografia</h1>
 
 <p class="subtitle">
-Escaneie o QR Code abaixo para realizar o pagamento  
-do retrato executivo escolhido.
+Escaneie o QR Code abaixo e informe o valor<br>
+de acordo com a opção escolhida.
 </p>
 
-<div class="qr-box">
-  <img src="qrcode-foto.png" alt="QR Code Fotografia">
-</div>
-
-<div class="price">
-Valor conforme opção selecionada
+<div class="qr">
+  <img src="qrcode.png" alt="QR Code Pix">
 </div>
 
 <p class="note">
-Após o pagamento, mostre a confirmação ao motorista  
-para iniciar a fotografia durante a viagem.
+Após o pagamento, mostre a confirmação ao motorista<br>
+para realizar sua fotografia durante a viagem.
 </p>
 
 </div>
