@@ -7,48 +7,74 @@
 
 <style>
 body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  background:#000;
-  color:#fff;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  text-align:center;
-}
-  .back{
-  font-size:14px;
-  opacity:.5;
-  text-decoration:none;
-  color:#fff;
+    margin:0;
+    background:#000;
+    color:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
 
 .container{
-  max-width:520px;
-  width:90%;
+    max-width:520px;
+    margin:0 auto;
+    padding:60px 24px 80px;
+    text-align:center;
 }
 
 h1{
-  font-size:36px;
-  margin-bottom:14px;
+    font-size:34px;
+    margin-bottom:12px;
 }
 
-.subtitle{
-  opacity:.75;
-  line-height:1.5;
-  margin-bottom:30px;
+.desc{
+    opacity:.7;
+    line-height:1.6;
+    margin-bottom:28px;
 }
 
-.btn{
-  display:block;
-  background:linear-gradient(90deg,#caa85a,#e6c87a);
-  color:#000;
-  text-decoration:none;
-  font-weight:bold;
-  padding:18px;
-  border-radius:40px;
-  font-size:18px;
+.card{
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:14px;
+}
+
+.preco{
+    font-size:22px;
+    margin-top:8px;
+    color:#d4af37;
+}
+
+/* BOTÃO PRINCIPAL */
+.botao{
+    display:block;
+    margin-top:22px;
+    padding:16px;
+    border-radius:40px;
+    text-decoration:none;
+    font-weight:600;
+    background:linear-gradient(135deg,#d4af37,#f1d27a);
+    color:#000;
+}
+
+/* BOTÃO SECUNDÁRIO (SOLICITAR SESSÃO) */
+.botao-sec{
+    display:block;
+    margin-top:26px;
+    padding:14px;
+    border-radius:16px;
+    text-decoration:none;
+    color:#d4af37;
+    border:1px solid rgba(212,175,55,0.5);
+    font-weight:500;
+}
+
+.voltar{
+    display:inline-block;
+    margin-top:18px;
+    font-size:13px;
+    opacity:.4;
+    text-decoration:none;
+    color:#fff;
 }
 </style>
 </head>
@@ -59,23 +85,42 @@ h1{
 
 <h1>Fotografia Executiva</h1>
 
-<p class="subtitle">
-Registre sua viagem com um retrato profissional discreto,<br>
-ideal para perfil corporativo, redes profissionais<br>
-ou recordação pessoal.
-<br><br>
-Opções disponíveis:
-<br>
-Retrato Digital — R$30<br>
-Digital + Polaroid — R$35<br>
-Foto Extra - R$10 
+<p class="desc">
+Transforme sua viagem em um retrato profissional.  
+Realizamos uma <strong>sessão rápida de aproximadamente 10 minutos</strong> dentro do carro,  
+com iluminação suave e enquadramento elegante.  
+Após as fotos, você escolhe sua favorita, faz o pagamento  
+e recebe a imagem <strong>na hora pelo WhatsApp</strong>.
 </p>
 
-<a href="foto-pagamento.html" class="btn">
-📸 Ir para pagamento da fotografia
-</a>
-<a href="index.html" class="back">Voltar</a>
+<div class="card">
+<strong>Foto Digital Profissional</strong>
+<div class="preco">R$ 20</div>
+</div>
 
+<div class="card">
+<strong>Foto Digital + Polaroid Instantânea</strong>
+<div class="preco">R$ 25</div>
+</div>
+
+<div class="card">
+<strong>Foto Extra</strong>
+<div class="preco">+ R$ 10</div>
+</div>
+
+<!-- BOTÃO SOLICITAR SESSÃO -->
+<a class="botao-sec" href="https://wa.me/5511982682148?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20sess%C3%A3o%20de%20fotografia%20executiva%20no%20carro.%0A%0ATelefone%20para%20envio%20das%20fotos%3A%20%0AEstilo%20de%20foto%20desejado%3A%20%0AObserva%C3%A7%C3%B5es%3A%20">
+Solicitar sessão de fotografia
+</a>
+
+<!-- BOTÃO PAGAMENTO -->
+<a class="botao" href="pagamento-fotografia.html">
+Ir para pagamento
+</a>
+
+<br>
+
+<a class="voltar" href="vip.html">Voltar</a>
 
 </div>
 
