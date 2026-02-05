@@ -1,6 +1,89 @@
-<h1>Passe Premium Ativo</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passe Premium Ativo</title>
 
-<a href="clima.html">❄️ Climatização</a>
-<a href="musica-player.html">🎵 Música</a>
-<a href="cinema.html">🎬 Cinema</a>
-<a href="jogos.html">🎮 Jogos</a>
+<style>
+body{
+    margin:0;
+    background:#000;
+    color:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+}
+
+.container{
+    max-width:520px;
+    width:90%;
+}
+
+h1{
+    font-size:40px;
+    margin-bottom:8px;
+}
+
+.sub{
+    opacity:.6;
+    margin-bottom:40px;
+    font-size:15px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:40px;
+}
+
+.card{
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:22px;
+    padding:22px;
+    text-decoration:none;
+    color:#fff;
+    transition:.2s;
+    font-size:16px;
+}
+
+.card:hover{
+    background:rgba(255,255,255,0.05);
+}
+
+.voltar{
+    margin-top:20px;
+    font-size:13px;
+    opacity:.4;
+    text-decoration:none;
+    color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Passe Premium</h1>
+<div class="sub">Experiência exclusiva liberada nesta viagem</div>
+
+<div class="grid">
+
+<a class="card" href="conforto-player.html">❄️ Climatização</a>
+<a class="card" href="musica-player.html">🎧 Música</a>
+<a class="card" href="cinema-player.html">🎬 Cinema</a>
+<a class="card" href="jogos-player.html">🎮 Jogos</a>
+
+</div>
+
+<a class="voltar" href="index.html">Encerrar modo premium</a>
+
+</div>
+
+</body>
+</html>
