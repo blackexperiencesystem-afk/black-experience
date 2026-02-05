@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Solicitar Sessão</title>
+<title>Solicitar Sessão Fotográfica</title>
 
 <style>
 body{
     margin:0;
     background:#000;
     color:#fff;
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     height:100vh;
 }
 
@@ -31,40 +30,40 @@ h1{
 
 p{
     opacity:.7;
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
 input, select{
     width:100%;
     padding:14px;
-    margin-bottom:12px;
+    margin:8px 0;
     border-radius:12px;
     border:none;
-    font-size:15px;
+    background:#111;
+    color:#fff;
+    font-size:16px;
 }
 
 button{
     width:100%;
     padding:16px;
+    margin-top:15px;
     border:none;
-    border-radius:30px;
+    border-radius:40px;
     font-size:16px;
     font-weight:600;
-    background:linear-gradient(135deg,#e5c15a,#cfa73a);
+    cursor:pointer;
+}
+
+.primary{
+    background:linear-gradient(135deg,#d4af37,#f1d27a);
     color:#000;
 }
 
-.sucesso{
+.success{
+    margin-top:20px;
+    opacity:.9;
     display:none;
-}
-
-.sucesso h2{
-    font-size:26px;
-    margin-bottom:12px;
-}
-
-.sucesso p{
-    opacity:.8;
 }
 </style>
 </head>
@@ -73,55 +72,60 @@ button{
 
 <div class="container">
 
-<!-- FORMULÁRIO -->
-<div id="formulario">
 <h1>Solicitar sessão fotográfica</h1>
-<p>Preencha rapidamente para iniciarmos sua sessão dentro do carro.</p>
+<p>Preencha rapidamente. O motorista será avisado na hora.</p>
 
-<form
-action="https://docs.google.com/forms/d/e/1FAIpQLSfu2RVjCX-ocfrzTB5TruBUuWaG6FB32AW5AbBCjPdmSh3DZQ/formResponse"
-method="POST"
-target="hidden_iframe"
-onsubmit="enviado()"
->
+<form id="form">
 
-<input name="entry.768217560" placeholder="Seu nome" required>
+<input type="text" id="nome" placeholder="Seu nome" required>
+<input type="tel" id="telefone" placeholder="Telefone para envio das fotos" required>
 
-<input name="entry.86139815" placeholder="Telefone para envio das fotos" required>
-
-<select name="entry.471992005" required>
-<option value="">Estilo de fotografia</option>
-<option>Executivo clássico</option>
-<option>Cinematográfico</option>
-<option>Descontraído</option>
+<select id="estilo" required>
+<option value="">Escolha o estilo</option>
+<option>Executivo</option>
+<option>Casual</option>
+<option>Criativo</option>
 <option>Romântico</option>
 </select>
 
-<button type="submit">Confirmar solicitação</button>
+<select id="extras">
+<option value="Nenhum">Extras desejados</option>
+<option>Foto extra</option>
+<option>Polaroid impressa</option>
+<option>Vídeo curto</option>
+</select>
+
+<button type="submit" class="primary">Confirmar solicitação</button>
+
 </form>
 
-<iframe name="hidden_iframe" style="display:none;"></iframe>
-</div>
-
-
-<!-- MENSAGEM DE SUCESSO -->
-<div id="sucesso" class="sucesso">
-<h2>Solicitação enviada ✨</h2>
-<p>
-O motorista foi notificado e irá iniciar sua sessão fotográfica em instantes.
-</p>
+<div class="success" id="msg">
+✅ Pedido enviado ao motorista.  
+Ele iniciará sua sessão em instantes.
 </div>
 
 </div>
-
 
 <script>
-function enviado(){
-    setTimeout(function(){
-        document.getElementById("formulario").style.display="none";
-        document.getElementById("sucesso").style.display="block";
-    }, 800);
-}
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const data = new FormData();
+
+    data.append("entry.768217560", document.getElementById("nome").value);
+    data.append("entry.86139815", document.getElementById("telefone").value);
+    data.append("entry.471992005", document.getElementById("estilo").value);
+    data.append("entry.123456789", document.getElementById("extras").value); // ajuste se necessário
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSf0Eykt8YrW3U3lxCUKUG-hB8rN0GPHh_uiEoav6AXcgOrB7w/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: data
+    }).then(() => {
+        document.getElementById("msg").style.display = "block";
+        document.getElementById("form").reset();
+    });
+});
 </script>
 
 </body>
