@@ -19,23 +19,38 @@ body{
 }
 
 .container{
-    width:90%;
-    max-width:500px;
+    width:92%;
+    max-width:520px;
     text-align:center;
 }
 
 h1{
     font-size:34px;
-    margin-bottom:8px;
+    margin-bottom:6px;
 }
 
 .sub{
-    opacity:.6;
-    margin-bottom:30px;
+    opacity:.55;
+    font-size:15px;
+    margin-bottom:32px;
 }
 
 .grupo{
-    margin-bottom:28px;
+    margin-bottom:32px;
+    text-align:left;
+}
+
+.titulo-grupo{
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:4px;
+}
+
+.desc-grupo{
+    font-size:13px;
+    opacity:.45;
+    margin-bottom:14px;
+    line-height:1.4;
 }
 
 .botao-opcao{
@@ -44,16 +59,16 @@ h1{
     margin:10px 0;
     padding:16px;
     border-radius:16px;
-    border:1px solid #333;
+    border:1px solid #2a2a2a;
     background:#0b0b0b;
     color:#fff;
-    font-size:16px;
+    font-size:15px;
     cursor:pointer;
-    transition:.2s;
+    transition:.18s ease;
 }
 
 .botao-opcao:hover{
-    background:#151515;
+    background:#141414;
 }
 
 .botao-opcao.selecionado{
@@ -62,7 +77,7 @@ h1{
 }
 
 .confirmar{
-    margin-top:20px;
+    margin-top:12px;
     display:block;
     width:100%;
     padding:18px;
@@ -73,12 +88,17 @@ h1{
     cursor:pointer;
     background:linear-gradient(135deg,#d4af37,#f1d27a);
     color:#000;
+    transition:.2s;
+}
+
+.confirmar:hover{
+    opacity:.9;
 }
 
 .voltar{
     margin-top:18px;
     font-size:13px;
-    opacity:.5;
+    opacity:.45;
     text-decoration:none;
     color:#fff;
     display:inline-block;
@@ -91,21 +111,29 @@ h1{
 <div class="container">
 
 <h1>Conforto Premium</h1>
-<div class="sub">Ajuste o clima e escolha seus itens</div>
+<div class="sub">Ajuste o ambiente da sua viagem em poucos toques</div>
 
 <!-- CLIMATIZAÇÃO -->
 <div class="grupo">
-<b>Climatização</b>
+<div class="titulo-grupo">Climatização</div>
+<div class="desc-grupo">
+Escolha a temperatura ideal do ar-condicionado.  
+Apenas **uma opção** pode ser selecionada.
+</div>
 
 <button class="botao-opcao" onclick="selecionarClima(this,'Mais frio')">❄️ Mais frio</button>
-<button class="botao-opcao" onclick="selecionarClima(this,'Padrão')">🌡️ Padrão</button>
+<button class="botao-opcao" onclick="selecionarClima(this,'Padrão')">🌡️ Temperatura padrão</button>
 <button class="botao-opcao" onclick="selecionarClima(this,'Mais quente')">🔥 Mais quente</button>
-<button class="botao-opcao" onclick="selecionarClima(this,'Ar desligado')">🚫 Ar desligado</button>
+<button class="botao-opcao" onclick="selecionarClima(this,'Ar desligado')">🚫 Ar-condicionado desligado</button>
 </div>
 
 <!-- ITENS -->
 <div class="grupo">
-<b>Escolha até 2 itens</b>
+<div class="titulo-grupo">Bebidas & Snacks</div>
+<div class="desc-grupo">
+Selecione até **2 itens** disponíveis para esta viagem.  
+Seu pedido será preparado imediatamente após a confirmação.
+</div>
 
 <button class="botao-opcao" onclick="toggleItem(this,'Água sem gás')">💧 Água sem gás</button>
 <button class="botao-opcao" onclick="toggleItem(this,'Água com gás')">🥤 Água com gás</button>
@@ -143,7 +171,7 @@ function toggleItem(botao, valor){
     }
 
     if(itens.length >= 2){
-        alert("Escolha no máximo 2 itens.");
+        alert("Você pode escolher no máximo 2 itens.");
         return;
     }
 
@@ -154,12 +182,12 @@ function toggleItem(botao, valor){
 function enviarPedido(){
 
     if(!climaEscolhido){
-        alert("Selecione a climatização.");
+        alert("Selecione a climatização desejada.");
         return;
     }
 
     if(itens.length === 0){
-        alert("Escolha pelo menos 1 item.");
+        alert("Escolha pelo menos 1 bebida ou snack.");
         return;
     }
 
