@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Conforto Premium</title>
 
 <style>
@@ -36,72 +35,66 @@ h1{
 }
 
 .grupo{
-    margin-bottom:32px;
+    margin-bottom:30px;
     text-align:left;
 }
 
-.titulo-grupo{
-    font-size:16px;
+.titulo{
     font-weight:600;
     margin-bottom:4px;
 }
 
-.desc-grupo{
+.desc{
     font-size:13px;
     opacity:.45;
-    margin-bottom:14px;
-    line-height:1.4;
+    margin-bottom:12px;
 }
 
-.botao-opcao{
+.opcao{
     display:block;
     width:100%;
-    margin:10px 0;
-    padding:16px;
-    border-radius:16px;
+    margin:8px 0;
+    padding:15px;
+    border-radius:14px;
     border:1px solid #2a2a2a;
     background:#0b0b0b;
     color:#fff;
     font-size:15px;
     cursor:pointer;
-    transition:.18s ease;
 }
 
-.botao-opcao:hover{
-    background:#141414;
-}
-
-.botao-opcao.selecionado{
+.opcao.selecionado{
     border-color:#d4af37;
     background:#1a1405;
 }
 
 .confirmar{
-    margin-top:12px;
-    display:block;
+    margin-top:18px;
     width:100%;
     padding:18px;
-    border-radius:40px;
     border:none;
+    border-radius:40px;
     font-size:18px;
     font-weight:600;
-    cursor:pointer;
     background:linear-gradient(135deg,#d4af37,#f1d27a);
     color:#000;
-    transition:.2s;
+    cursor:pointer;
 }
 
-.confirmar:hover{
-    opacity:.9;
+.ok{
+    display:none;
+    margin-top:18px;
+    font-size:15px;
+    opacity:.8;
 }
 
 .voltar{
-    margin-top:18px;
+    display:inline-block;
+    margin-top:16px;
     font-size:13px;
-    opacity:.45;
+    opacity:.4;
     text-decoration:none;
     color:#fff;
-    display:inline-block;
 }
 </style>
 </head>
@@ -111,97 +104,92 @@ h1{
 <div class="container">
 
 <h1>Conforto Premium</h1>
-<div class="sub">Ajuste o ambiente da sua viagem em poucos toques</div>
+<div class="sub">Personalize o ambiente da sua viagem</div>
 
 <!-- CLIMATIZAÇÃO -->
 <div class="grupo">
-<div class="titulo-grupo">Climatização</div>
-<div class="desc-grupo">
-Escolha a temperatura ideal do ar-condicionado.  
-Apenas **uma opção** pode ser selecionada.
+<div class="titulo">Climatização</div>
+<div class="desc">Escolha apenas uma opção de temperatura.</div>
+
+<button class="opcao" onclick="selectSingle(this,'clima','Mais frio')">❄️ Mais frio</button>
+<button class="opcao" onclick="selectSingle(this,'clima','Padrão')">🌡️ Padrão</button>
+<button class="opcao" onclick="selectSingle(this,'clima','Mais quente')">🔥 Mais quente</button>
+<button class="opcao" onclick="selectSingle(this,'clima','Ar desligado')">🚫 Ar desligado</button>
 </div>
 
-<button class="botao-opcao" onclick="selecionarClima(this,'Mais frio')">❄️ Mais frio</button>
-<button class="botao-opcao" onclick="selecionarClima(this,'Padrão')">🌡️ Temperatura padrão</button>
-<button class="botao-opcao" onclick="selecionarClima(this,'Mais quente')">🔥 Mais quente</button>
-<button class="botao-opcao" onclick="selecionarClima(this,'Ar desligado')">🚫 Ar-condicionado desligado</button>
+<!-- AROMATIZAÇÃO -->
+<div class="grupo">
+<div class="titulo">Aromatização</div>
+<div class="desc">Controle o difusor aromático do ambiente.</div>
+
+<button class="opcao" onclick="selectSingle(this,'aroma','Ligado')">🌿 Difusor ligado</button>
+<button class="opcao" onclick="selectSingle(this,'aroma','Desligado')">⛔ Difusor desligado</button>
 </div>
 
 <!-- ITENS -->
 <div class="grupo">
-<div class="titulo-grupo">Bebidas & Snacks</div>
-<div class="desc-grupo">
-Selecione até **2 itens** disponíveis para esta viagem.  
-Seu pedido será preparado imediatamente após a confirmação.
+<div class="titulo">Bebidas & Snacks</div>
+<div class="desc">Selecione até dois itens disponíveis.</div>
+
+<button class="opcao" onclick="toggleItem(this,'Água sem gás')">💧 Água sem gás</button>
+<button class="opcao" onclick="toggleItem(this,'Água com gás')">🥤 Água com gás</button>
+<button class="opcao" onclick="toggleItem(this,'Mini Coca-Cola')">🥤 Mini Coca-Cola</button>
+<button class="opcao" onclick="toggleItem(this,'Mini Ruffles')">🍟 Mini Ruffles</button>
+<button class="opcao" onclick="toggleItem(this,'KitKat')">🍫 KitKat</button>
+<button class="opcao" onclick="toggleItem(this,'Amendoim')">🥜 Amendoim</button>
 </div>
 
-<button class="botao-opcao" onclick="toggleItem(this,'Água sem gás')">💧 Água sem gás</button>
-<button class="botao-opcao" onclick="toggleItem(this,'Água com gás')">🥤 Água com gás</button>
-<button class="botao-opcao" onclick="toggleItem(this,'Mini Coca-Cola')">🥤 Mini Coca-Cola</button>
-<button class="botao-opcao" onclick="toggleItem(this,'Mini Ruffles')">🍟 Mini Ruffles</button>
-<button class="botao-opcao" onclick="toggleItem(this,'KitKat')">🍫 KitKat</button>
-<button class="botao-opcao" onclick="toggleItem(this,'Amendoim')">🥜 Amendoim</button>
-</div>
+<button class="confirmar" onclick="enviar()">Confirmar pedido</button>
 
-<button class="confirmar" onclick="enviarPedido()">Confirmar pedido</button>
+<div class="ok" id="ok">Pedido enviado ao motorista ✔</div>
 
 <a class="voltar" href="vip.html">Voltar</a>
 
 </div>
 
 <script>
-let climaEscolhido = "";
-let itens = [];
+let clima="", aroma="", itens=[];
 
-function selecionarClima(botao, valor){
-    climaEscolhido = valor;
+function selectSingle(btn, tipo, valor){
+    let grupo = btn.parentElement.querySelectorAll(".opcao");
+    grupo.forEach(b=>b.classList.remove("selecionado"));
+    btn.classList.add("selecionado");
 
-    document.querySelectorAll(".grupo:first-of-type .botao-opcao")
-        .forEach(b => b.classList.remove("selecionado"));
-
-    botao.classList.add("selecionado");
+    if(tipo==="clima") clima = valor;
+    if(tipo==="aroma") aroma = valor;
 }
 
-function toggleItem(botao, valor){
-
+function toggleItem(btn, valor){
     if(itens.includes(valor)){
-        itens = itens.filter(i => i !== valor);
-        botao.classList.remove("selecionado");
+        itens = itens.filter(i=>i!==valor);
+        btn.classList.remove("selecionado");
         return;
     }
 
-    if(itens.length >= 2){
-        alert("Você pode escolher no máximo 2 itens.");
+    if(itens.length>=2){
+        alert("Escolha no máximo 2 itens.");
         return;
     }
 
     itens.push(valor);
-    botao.classList.add("selecionado");
+    btn.classList.add("selecionado");
 }
 
-function enviarPedido(){
+function enviar(){
 
-    if(!climaEscolhido){
-        alert("Selecione a climatização desejada.");
-        return;
-    }
+    if(!clima){ alert("Selecione a climatização."); return; }
+    if(!aroma){ alert("Selecione a aromatização."); return; }
 
-    if(itens.length === 0){
-        alert("Escolha pelo menos 1 bebida ou snack.");
-        return;
-    }
+    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfu2RVjCX-ocfrzTB5TruBUuWaG6FB32AW5AbBCjPdmSh3DZQ/formResponse";
 
-    const mensagem =
-`Pedido Black Experience:
+    const data = new FormData();
+    data.append("entry.1771049017", clima);
+    data.append("entry.1800625", aroma);
+    data.append("entry.1927228480", itens.join(", "));
 
-Climatização: ${climaEscolhido}
-Itens: ${itens.join(", ")}`;
+    fetch(formURL, { method:"POST", mode:"no-cors", body:data });
 
-    const telefone = "5511982682148";
-
-    const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
-
-    window.location.href = url;
+    document.getElementById("ok").style.display="block";
 }
 </script>
 
