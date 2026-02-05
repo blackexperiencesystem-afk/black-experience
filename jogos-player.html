@@ -6,60 +6,72 @@
 <title>Jogos Premium</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
+    margin:0;
     background:#000;
     color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    height:100vh;
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+    height:100vh;
 }
 
 .container{
+    width:90%;
+    max-width:420px;
     text-align:center;
-    max-width:520px;
-    padding:40px 24px;
 }
 
 h1{
-    font-size:42px;
-    margin-bottom:12px;
+    font-size:30px;
+    margin-bottom:10px;
 }
 
-.subtitle{
-    opacity:.6;
-    margin-bottom:32px;
-    line-height:1.5;
+p{
+    opacity:.7;
+    margin-bottom:28px;
+    line-height:1.4;
 }
 
-.list{
-    list-style:none;
-    margin-bottom:40px;
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:28px;
 }
 
-.list li{
-    margin:10px 0;
+.card{
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:18px;
+    padding:16px 10px;
+    font-size:14px;
     opacity:.9;
-    font-size:16px;
 }
 
-.back{
+.card span{
+    display:block;
+    font-size:20px;
+    margin-bottom:6px;
+}
+
+.btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    font-weight:600;
+    background:linear-gradient(135deg,#e5c15a,#cfa73a);
+    color:#000;
+    margin-bottom:16px;
+}
+
+.voltar{
     font-size:13px;
-    opacity:.35;
+    opacity:.5;
     text-decoration:none;
     color:#fff;
-    transition:.2s;
-}
-
-.back:hover{
-    opacity:.7;
 }
 </style>
 </head>
@@ -70,21 +82,32 @@ h1{
 
 <h1>Jogos Premium</h1>
 
-<p class="subtitle">
-Acesse jogos clássicos diretamente no tablet e transforme sua viagem em um momento de diversão.
+<p>
+Relaxe durante a viagem com clássicos do videogame.
+Escolha seu favorito e aproveite a experiência no tablet.
 </p>
 
-<ul class="list">
-<li>🎮 GTA San Andreas</li>
-<li>🏎️ Mario Kart</li>
-<li>⚽ Futebol clássico</li>
-<li>🕹️ Retrô N64 e PlayStation</li>
-<li>🎮 Compatível com controle sem fio</li>
-</ul>
+<div class="grid">
+    <div class="card"><span>🚗</span>GTA San Andreas</div>
+    <div class="card"><span>🏁</span>Mario Kart</div>
+    <div class="card"><span>⚽</span>Futebol Retrô</div>
+    <div class="card"><span>🎮</span>N64 & PlayStation</div>
+</div>
 
-<a class="back" href="vip.html">voltar</a>
+<button class="btn" onclick="iniciarJogo()">
+Iniciar no tablet
+</button>
+
+<a class="voltar" href="vip.html">Voltar ao menu premium</a>
 
 </div>
+
+
+<script>
+function iniciarJogo(){
+    alert("O motorista irá iniciar o jogo no tablet para você. Aproveite a experiência 🎮");
+}
+</script>
 
 </body>
 </html>
