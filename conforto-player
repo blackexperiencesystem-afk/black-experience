@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Conforto Premium</title>
 
 <style>
@@ -10,48 +11,42 @@ body{
     margin:0;
     background:#000;
     color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     display:flex;
     justify-content:center;
     align-items:center;
     height:100vh;
-    text-align:center;
 }
 
 .container{
+    text-align:center;
     max-width:520px;
-    width:90%;
+    padding:40px 20px;
 }
 
 h1{
-    font-size:38px;
-    margin-bottom:12px;
+    font-size:40px;
+    margin-bottom:10px;
 }
 
 p{
     opacity:.7;
-    line-height:1.5;
-    margin-bottom:28px;
+    line-height:1.6;
+    margin-bottom:30px;
 }
 
-.lista{
-    opacity:.9;
-    line-height:1.7;
-    margin-bottom:36px;
+ul{
+    list-style:none;
+    padding:0;
+    margin:0 0 40px 0;
 }
 
-.botao{
-    display:block;
-    background:linear-gradient(135deg,#d4af37,#f1d27a);
-    color:#000;
-    text-decoration:none;
-    font-weight:bold;
-    padding:18px;
-    border-radius:40px;
-    margin-bottom:18px;
+li{
+    margin:8px 0;
+    opacity:.85;
 }
 
-.voltar{
+.back{
     font-size:13px;
     opacity:.4;
     text-decoration:none;
@@ -64,43 +59,24 @@ p{
 
 <div class="container">
 
-<h1>❄️ Conforto Premium</h1>
+<h1>Conforto Premium</h1>
 
 <p>
-Personalize o clima do carro e escolha  
-seus itens de bordo durante a viagem.
+Climatização personalizada e escolha de até <b>2 itens</b> para tornar sua viagem mais confortável.
 </p>
 
-<div class="lista">
-Climatização sob medida:<br>
-• Mais frio<br>
-• Temperatura padrão<br>
-• Mais quente<br>
-• Ar desligado
-<br><br>
-Escolha <strong>2 itens</strong>:
-<br>
-Água sem gás • Água com gás • Mini Coca-Cola  
-Mini Ruffles • Mini KitKat • Amendoim
-</div>
+<ul>
+<li>❄️ Ajuste de temperatura sob medida</li>
+<li>🥤 Água sem gás ou com gás</li>
+<li>🥤 Mini Coca-Cola</li>
+<li>🍫 Mini KitKat</li>
+<li>🥜 Amendoim</li>
+<li>🍟 Mini Ruffles</li>
+</ul>
 
-<a class="botao" onclick="chamarMotorista()">
-Solicitar ajustes agora
-</a>
-
-<a class="voltar" href="vip.html">Voltar</a>
+<a class="back" href="vip.html">voltar</a>
 
 </div>
-
-<script>
-function chamarMotorista(){
-    if (typeof fully !== "undefined") {
-        fully.textToSpeech("O motorista já foi avisado para ajustar o conforto da viagem.");
-    } else {
-        alert("Informe ao motorista suas preferências de clima e itens.");
-    }
-}
-</script>
 
 </body>
 </html>
