@@ -72,30 +72,22 @@ font-size:12px;
 
 <h1>Solicitar sessão</h1>
 
-<form
-action="https://docs.google.com/forms/d/e/1FAIpQLSfu2RVjCX-ocfrzTB5TruBUuWaG6FB32AW5AbBCjPdmSh3DZQ/formResponse"
-method="POST"
-target="hidden_iframe"
-onsubmit="setTimeout(() => { window.location.href='confirmacao-foto.html'; }, 700);"
->
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSfu2RVjCX-ocfrzTB5TruBUuWaG6FB32AW5AbBCjPdmSh3DZQ/formResponse" method="POST" target="_blank">
 
-<label>Telefone para envio</label>
-<input name="entry.768217560" required>
+  <input type="text" name="entry.768217560" placeholder="Seu nome" required>
+  <input type="tel" name="entry.86139815" placeholder="Telefone com WhatsApp" required>
 
-<label>Estilo de fotografia</label>
-<select name="entry.86139815" required>
-<option value="">Selecionar</option>
-<option>Retrato profissional</option>
-<option>Executivo corporativo</option>
-<option>Casual elegante</option>
-<option>Artístico preto e branco</option>
-<option>Natural espontâneo</option>
-</select>
+  <select name="entry.471992005" required>
+    <option value="">Escolha o estilo</option>
+    <option value="Executivo">Executivo</option>
+    <option value="Retrato profissional">Retrato profissional</option>
+    <option value="Criativo">Criativo</option>
+    <option value="Casual">Casual</option>
+  </select>
 
-<label>Observações</label>
-<input name="entry.471992005">
+  <button type="submit">Confirmar solicitação</button>
 
-<button type="submit">Confirmar solicitação</button>
+</form>
 
 </form>
 
