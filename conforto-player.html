@@ -3,63 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Conforto Premium</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
+    margin:0;
     background:#000;
     color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    height:100vh;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
     display:flex;
     justify-content:center;
     align-items:center;
+    height:100vh;
 }
 
 .container{
+    width:90%;
+    max-width:500px;
     text-align:center;
-    max-width:520px;
-    padding:40px 24px;
 }
 
 h1{
-    font-size:42px;
-    margin-bottom:12px;
+    font-size:34px;
+    margin-bottom:8px;
 }
 
-.subtitle{
+.sub{
     opacity:.6;
-    margin-bottom:32px;
-    line-height:1.5;
+    margin-bottom:30px;
 }
 
-.list{
-    list-style:none;
-    margin-bottom:40px;
+.grupo{
+    margin-bottom:28px;
 }
 
-.list li{
+.botao-opcao{
+    display:block;
+    width:100%;
     margin:10px 0;
-    opacity:.9;
-    font-size:16px;
-}
-
-.back{
-    font-size:13px;
-    opacity:.35;
-    text-decoration:none;
+    padding:16px;
+    border-radius:16px;
+    border:1px solid #333;
+    background:#0b0b0b;
     color:#fff;
+    font-size:16px;
+    cursor:pointer;
     transition:.2s;
 }
 
-.back:hover{
-    opacity:.7;
+.botao-opcao:hover{
+    background:#151515;
+}
+
+.botao-opcao.selecionado{
+    border-color:#d4af37;
+    background:#1a1405;
+}
+
+.confirmar{
+    margin-top:20px;
+    display:block;
+    width:100%;
+    padding:18px;
+    border-radius:40px;
+    border:none;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    background:linear-gradient(135deg,#d4af37,#f1d27a);
+    color:#000;
+}
+
+.voltar{
+    margin-top:18px;
+    font-size:13px;
+    opacity:.5;
+    text-decoration:none;
+    color:#fff;
+    display:inline-block;
 }
 </style>
 </head>
@@ -69,24 +91,91 @@ h1{
 <div class="container">
 
 <h1>Conforto Premium</h1>
+<div class="sub">Ajuste o clima e escolha seus itens</div>
 
-<p class="subtitle">
-Climatização personalizada e escolha de até <b>2 itens</b> para uma viagem mais confortável.
-</p>
+<!-- CLIMATIZAÇÃO -->
+<div class="grupo">
+<b>Climatização</b>
 
-<ul class="list">
-<li>❄️ Ajuste de temperatura sob medida</li>
-<li>🥤 Água sem gás</li>
-<li>🥤 Água com gás</li>
-<li>🥤 Mini Coca-Cola</li>
-<li>🍫 Mini KitKat</li>
-<li>🥜 Amendoim</li>
-<li>🍟 Mini Ruffles</li>
-</ul>
+<button class="botao-opcao" onclick="selecionarClima(this,'Mais frio')">❄️ Mais frio</button>
+<button class="botao-opcao" onclick="selecionarClima(this,'Padrão')">🌡️ Padrão</button>
+<button class="botao-opcao" onclick="selecionarClima(this,'Mais quente')">🔥 Mais quente</button>
+<button class="botao-opcao" onclick="selecionarClima(this,'Ar desligado')">🚫 Ar desligado</button>
+</div>
 
-<a class="back" href="vip.html">voltar</a>
+<!-- ITENS -->
+<div class="grupo">
+<b>Escolha até 2 itens</b>
+
+<button class="botao-opcao" onclick="toggleItem(this,'Água sem gás')">💧 Água sem gás</button>
+<button class="botao-opcao" onclick="toggleItem(this,'Água com gás')">🥤 Água com gás</button>
+<button class="botao-opcao" onclick="toggleItem(this,'Mini Coca-Cola')">🥤 Mini Coca-Cola</button>
+<button class="botao-opcao" onclick="toggleItem(this,'Mini Ruffles')">🍟 Mini Ruffles</button>
+<button class="botao-opcao" onclick="toggleItem(this,'KitKat')">🍫 KitKat</button>
+<button class="botao-opcao" onclick="toggleItem(this,'Amendoim')">🥜 Amendoim</button>
+</div>
+
+<button class="confirmar" onclick="enviarPedido()">Confirmar pedido</button>
+
+<a class="voltar" href="vip.html">Voltar</a>
 
 </div>
+
+<script>
+let climaEscolhido = "";
+let itens = [];
+
+function selecionarClima(botao, valor){
+    climaEscolhido = valor;
+
+    document.querySelectorAll(".grupo:first-of-type .botao-opcao")
+        .forEach(b => b.classList.remove("selecionado"));
+
+    botao.classList.add("selecionado");
+}
+
+function toggleItem(botao, valor){
+
+    if(itens.includes(valor)){
+        itens = itens.filter(i => i !== valor);
+        botao.classList.remove("selecionado");
+        return;
+    }
+
+    if(itens.length >= 2){
+        alert("Escolha no máximo 2 itens.");
+        return;
+    }
+
+    itens.push(valor);
+    botao.classList.add("selecionado");
+}
+
+function enviarPedido(){
+
+    if(!climaEscolhido){
+        alert("Selecione a climatização.");
+        return;
+    }
+
+    if(itens.length === 0){
+        alert("Escolha pelo menos 1 item.");
+        return;
+    }
+
+    const mensagem =
+`Pedido Black Experience:
+
+Climatização: ${climaEscolhido}
+Itens: ${itens.join(", ")}`;
+
+    const telefone = "5511982682148";
+
+    const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+
+    window.location.href = url;
+}
+</script>
 
 </body>
 </html>
