@@ -6,63 +6,43 @@
 <title>Passe Premium</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-    .secondary{
-    background:transparent;
-    color:#d4af37;
-    border:1px solid rgba(212,175,55,0.5);
-    box-shadow:none;
-}
-
-.secondary:active{
-    transform:scale(0.97);
-}
-
-
 body{
+    margin:0;
     background:#000;
     color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
 
-/* CONTAINER CENTRAL */
-.container{
-    text-align:center;
+/* WRAPPER CENTRAL REAL */
+.wrapper{
     max-width:520px;
-    padding:48px 24px;
+    margin:0 auto;
+    padding:60px 20px 80px;
+    text-align:center;
 }
 
 /* TÍTULO */
 h1{
-    font-size:44px;
-    font-weight:600;
-    margin-bottom:10px;
+    font-size:42px;
+    margin-bottom:8px;
 }
 
 /* SUBTÍTULO */
-.subtitle{
+.sub{
     opacity:.55;
-    margin-bottom:42px;
+    margin-bottom:36px;
     font-size:15px;
 }
 
-/* GRID DE BOTÕES */
+/* GRID BOTÕES */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:18px;
-    margin-bottom:40px;
+    margin-bottom:26px;
 }
 
-/* BOTÃO PREMIUM */
+/* BOTÕES PRINCIPAIS */
 .button{
     padding:20px;
     border-radius:18px;
@@ -71,51 +51,45 @@ h1{
     font-size:16px;
     font-weight:600;
 
-    /* GRADIENTE PREMIUM DOURADO SUAVE */
     background:linear-gradient(135deg,#d4af37,#f1d27a);
-
-    border:none;
-
-    /* SOMBRA LEVE PARA DESTACAR DO FUNDO PRETO */
     box-shadow:0 6px 18px rgba(212,175,55,0.25);
 
-    transition:all .2s ease;
+    transition:.2s;
 }
 
-
-    backdrop-filter:blur(6px);
-
-    transition:all .25s ease;
+.button:active{
+    transform:scale(0.97);
 }
 
-/* HOVER PREMIUM DOURADO */
-.button:hover{
-    border-color:rgba(212,175,55,0.6);
-    box-shadow:0 0 18px rgba(212,175,55,0.25);
-    transform:translateY(-2px);
+/* BOTÃO FOTOGRAFIA (SECUNDÁRIO) */
+.secondary{
+    display:block;
+    margin-top:10px;
+    padding:16px;
+    border-radius:16px;
+    text-decoration:none;
+    color:#d4af37;
+    border:1px solid rgba(212,175,55,0.5);
 }
 
 /* ENCERRAR */
 .close{
+    display:inline-block;
+    margin-top:22px;
     font-size:13px;
-    opacity:.35;
+    opacity:.4;
     text-decoration:none;
     color:#fff;
-    transition:.2s;
-}
-
-.close:hover{
-    opacity:.7;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrapper">
 
 <h1>Passe Premium</h1>
-<p class="subtitle">Experiência exclusiva liberada nesta viagem</p>
+<div class="sub">Experiência exclusiva liberada nesta viagem</div>
 
 <div class="grid">
     <a class="button" href="conforto-player.html">❄️ Conforto</a>
@@ -123,8 +97,8 @@ h1{
     <a class="button" href="cinema-player.html">🎬 Cinema</a>
     <a class="button" href="jogos-player.html">🎮 Jogos</a>
 </div>
-    <a class="button secondary" href="fotografia.html">📸 Fotografia Executiva</a>
 
+<a class="secondary" href="fotografia.html">📸 Fotografia Executiva no carro</a>
 
 <a class="close" href="index.html">Encerrar modo premium</a>
 
