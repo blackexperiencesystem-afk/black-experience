@@ -7,106 +7,116 @@
 
 <style>
 body{
-margin:0;
-background:#000;
-color:#fff;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-display:flex;
-align-items:center;
-justify-content:center;
-min-height:100vh;
-text-align:center;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:#000;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  text-align:center;
 }
 
 .container{
-max-width:420px;
-padding:40px 24px;
+  max-width:420px;
+  padding:24px;
 }
 
 h1{
-font-size:32px;
-margin-bottom:12px;
-font-weight:600;
+  font-size:34px;
+  margin-bottom:12px;
 }
 
 p{
-opacity:.7;
-line-height:1.5;
-margin-bottom:28px;
+  opacity:.75;
+  line-height:1.5;
+  margin-bottom:28px;
 }
 
 .price{
-font-size:20px;
-margin-bottom:8px;
+  font-size:22px;
+  margin-bottom:8px;
 }
 
-.extra{
-opacity:.6;
-font-size:14px;
-margin-bottom:32px;
+.included{
+  font-size:16px;
+  opacity:.9;
+  margin-bottom:18px;
+}
+
+.extras{
+  font-size:14px;
+  opacity:.7;
+  line-height:1.6;
+  margin-bottom:32px;
 }
 
 .btn{
-display:block;
-width:100%;
-margin:10px 0;
-padding:16px;
-border-radius:999px;
-background:linear-gradient(135deg,#d4af37,#f1d27a);
-color:#000;
-font-weight:600;
-text-decoration:none;
+  display:block;
+  width:100%;
+  padding:16px;
+  margin-bottom:14px;
+  border-radius:40px;
+  text-decoration:none;
+  font-weight:600;
+  transition:.2s;
 }
 
-.btn.secondary{
-background:transparent;
-border:1px solid rgba(255,255,255,.2);
-color:#fff;
+.btn-gold{
+  background:linear-gradient(135deg,#e7c873,#c9a94e);
+  color:#000;
 }
 
-.small{
-margin-top:28px;
-font-size:13px;
-opacity:.4;
+.btn-dark{
+  border:1px solid rgba(255,255,255,.2);
+  color:#fff;
+}
+
+.btn:hover{
+  transform:scale(1.02);
+}
+
+.footer{
+  margin-top:24px;
+  font-size:12px;
+  opacity:.4;
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <h1>Fotografia Executiva</h1>
 
 <p>
-Uma sessão rápida e elegante dentro do carro.<br>
-Você escolhe sua foto favorita e recebe a versão digital na hora.
+Uma sessão rápida, elegante e discreta dentro do carro.  
+Você escolhe sua foto favorita e recebe a versão digital editada na hora.
 </p>
 
-<div class="price">
-Sessão fotográfica — R$30
+<div class="price">Sessão fotográfica — R$30</div>
+
+<div class="included">
+Inclui <strong>1 foto digital profissional editada</strong>.
 </div>
 
-<div class="extra">
-Foto extra: +R$10<br>
+<div class="extras">
+Foto extra: +R$10 cada<br>
 Polaroid impressa: +R$15<br>
-Vídeo curto cinematográfico: R$79
+Vídeo curto cinematográfico: R$90
 </div>
 
-
-<a href="solicitar-sessao.html" class="btn">
+<a href="solicitar-sessao.html" class="btn btn-gold">
 Solicitar sessão fotográfica
 </a>
 
-<a href="pagamento-fotografia.html" class="btn secondary">
+<a href="pagamento-fotografia.html" class="btn btn-dark">
 Ir direto para pagamento
 </a>
 
-<div class="small">
-Black Experience
-</div>
+<div class="footer">Black Experience</div>
 
 </div>
-
 </body>
 </html>
