@@ -3,54 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Conforto Premium</title>
 
 <style>
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
     background:#000;
     color:#fff;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
 }
 
 .container{
     text-align:center;
     max-width:520px;
-    padding:40px 20px;
+    padding:40px 24px;
 }
 
 h1{
-    font-size:40px;
-    margin-bottom:10px;
+    font-size:42px;
+    margin-bottom:12px;
 }
 
-p{
-    opacity:.7;
-    line-height:1.6;
-    margin-bottom:30px;
+.subtitle{
+    opacity:.6;
+    margin-bottom:32px;
+    line-height:1.5;
 }
 
-ul{
+.list{
     list-style:none;
-    padding:0;
-    margin:0 0 40px 0;
+    margin-bottom:40px;
 }
 
-li{
-    margin:8px 0;
-    opacity:.85;
+.list li{
+    margin:10px 0;
+    opacity:.9;
+    font-size:16px;
 }
 
 .back{
     font-size:13px;
-    opacity:.4;
+    opacity:.35;
     text-decoration:none;
     color:#fff;
+    transition:.2s;
+}
+
+.back:hover{
+    opacity:.7;
 }
 </style>
 </head>
@@ -61,13 +70,14 @@ li{
 
 <h1>Conforto Premium</h1>
 
-<p>
-Climatização personalizada e escolha de até <b>2 itens</b> para tornar sua viagem mais confortável.
+<p class="subtitle">
+Climatização personalizada e escolha de até <b>2 itens</b> para uma viagem mais confortável.
 </p>
 
-<ul>
+<ul class="list">
 <li>❄️ Ajuste de temperatura sob medida</li>
-<li>🥤 Água sem gás ou com gás</li>
+<li>🥤 Água sem gás</li>
+<li>🥤 Água com gás</li>
 <li>🥤 Mini Coca-Cola</li>
 <li>🍫 Mini KitKat</li>
 <li>🥜 Amendoim</li>
