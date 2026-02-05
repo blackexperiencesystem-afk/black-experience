@@ -8,89 +8,136 @@
 <style>
 body{
   margin:0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   background:#000;
   color:#fff;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   height:100vh;
   text-align:center;
 }
-  .back{
-  font-size:14px;
-  opacity:.45;
-  text-decoration:none;
-  color:#ffffff;
-  transition:opacity .2s ease;
-}
-
-.back:hover{
-  opacity:.8;
-}
-
 
 .container{
-  max-width:520px;
-  width:90%;
+  max-width:420px;
+  padding:24px;
 }
 
 h1{
-  font-size:34px;
+  font-size:30px;
+  margin-bottom:12px;
+}
+
+.desc{
+  opacity:.75;
+  line-height:1.5;
+  margin-bottom:24px;
+}
+
+.base{
+  font-size:20px;
+  margin-bottom:6px;
+}
+
+.base small{
+  display:block;
+  font-size:13px;
+  opacity:.6;
+  margin-top:6px;
+}
+
+.upsell{
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  padding:18px;
+  margin:26px 0;
+}
+
+.upsell-title{
+  font-size:14px;
+  opacity:.6;
   margin-bottom:10px;
 }
 
-.subtitle{
-  opacity:.75;
-  margin-bottom:24px;
-  line-height:1.5;
+.upsell-item{
+  font-size:16px;
+  margin:6px 0;
 }
 
 .qr{
-  background:#111;
-  border:1px solid #333;
-  border-radius:22px;
-  padding:24px;
-  display:flex;
-  justify-content:center;
+  width:220px;
+  border-radius:16px;
+  margin:18px 0;
 }
 
-.qr img{
-  width:260px;
-  border-radius:12px;
+.btn{
+  display:block;
+  width:100%;
+  padding:16px;
+  margin-top:12px;
+  border-radius:40px;
+  text-decoration:none;
+  font-weight:600;
+  transition:.2s;
 }
 
-.note{
+.btn-gold{
+  background:linear-gradient(135deg,#e7c873,#c9a94e);
+  color:#000;
+}
+
+.btn-dark{
+  border:1px solid rgba(255,255,255,.2);
+  color:#fff;
+}
+
+.btn:hover{
+  transform:scale(1.02);
+}
+
+.footer{
   margin-top:22px;
-  opacity:.7;
-  font-size:14px;
+  font-size:12px;
+  opacity:.35;
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<h1>Pagamento Fotografia</h1>
+<h1>Finalizar fotografia</h1>
 
-<p class="subtitle">
-Escaneie o QR Code abaixo e informe o valor<br>
-de acordo com a opção escolhida.
+<p class="desc">
+Sua sessão inclui <strong>1 foto digital profissional editada</strong>.<br>
+Você poderá escolher fotos extras antes do pagamento.
 </p>
 
-<div class="qr">
-  <img src="qrcode.png" alt="QR Code Pix">
+<div class="base">
+Sessão fotográfica — <strong>R$30</strong>
+<small>Entrega imediata via WhatsApp após escolha da foto.</small>
 </div>
 
-<p class="note">
-Após o pagamento, mostre a confirmação ao motorista<br>
-para realizar sua fotografia durante a viagem.
+<div class="upsell">
+<div class="upsell-title">Adicionar à sua sessão</div>
+
+<div class="upsell-item">📸 Foto extra — R$10 cada</div>
+<div class="upsell-item">🖼️ Polaroid impressa — R$15</div>
+<div class="upsell-item">🎬 Vídeo curto cinematográfico — R$90</div>
+</div>
+
+<img src="qrcode.png" class="qr">
+
+<p style="font-size:13px; opacity:.6;">
+Após o pagamento, mostre a confirmação ao motorista.
 </p>
-  <a href="javascript:history.back()" class="back">Voltar</a>
 
+<a href="index.html" class="btn btn-dark">
+Voltar ao início
+</a>
+
+<div class="footer">Black Experience</div>
 
 </div>
-
 </body>
 </html>
