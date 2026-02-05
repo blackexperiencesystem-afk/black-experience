@@ -6,8 +6,13 @@
 <title>Cinema Premium</title>
 
 <style>
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
     background:#000;
     color:#fff;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
@@ -24,12 +29,12 @@ body{
 }
 
 h1{
-    font-size:38px;
-    margin-bottom:12px;
+    font-size:40px;
+    margin-bottom:14px;
 }
 
 p{
-    opacity:.7;
+    opacity:.65;
     line-height:1.5;
     margin-bottom:40px;
 }
@@ -39,3 +44,66 @@ p{
     background:linear-gradient(135deg,#d4af37,#f1d27a);
     color:#000;
     text-decoration:none;
+    font-weight:bold;
+    padding:18px;
+    border-radius:40px;
+    margin-bottom:16px;
+    font-size:16px;
+}
+
+.secundario{
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.18);
+    color:#fff;
+}
+
+.voltar{
+    display:inline-block;
+    margin-top:14px;
+    font-size:13px;
+    opacity:.4;
+    text-decoration:none;
+    color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎬 Modo Cinema</h1>
+
+<p>
+Escolha um streaming e assista durante a viagem  
+em tela cheia com conforto total.
+</p>
+
+<a class="botao" onclick="abrirDisney()">Abrir Disney+</a>
+
+<a class="botao secundario" onclick="abrirHBO()">Abrir HBO Max</a>
+
+<a class="voltar" href="vip.html">Voltar</a>
+
+</div>
+
+<script>
+function abrirDisney(){
+    if (typeof fully !== "undefined") {
+        fully.startApplication("com.disney.disneyplus");
+    } else {
+        window.location.href = "https://www.disneyplus.com/";
+    }
+}
+
+function abrirHBO(){
+    if (typeof fully !== "undefined") {
+        fully.startApplication("com.hbo.hbonow");
+    } else {
+        window.location.href = "https://play.max.com/";
+    }
+}
+</script>
+
+</body>
+</html>
