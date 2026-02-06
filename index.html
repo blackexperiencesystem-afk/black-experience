@@ -21,20 +21,16 @@ body {
     text-align: center;
 }
 
-/* CONTAINER CENTRAL REAL */
+/* CONTAINER CENTRAL */
 .container {
     max-width: 960px;
-    width: 100%;
-    padding: 40px 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 90%;
 }
 
 /* TÍTULO */
 h1 {
     font-size: 48px;
-    margin: 0 0 12px;
+    margin-bottom: 10px;
 }
 
 /* SUBTÍTULO */
@@ -42,40 +38,41 @@ h1 {
     font-size: 20px;
     color: #bbb;
     margin-bottom: 48px;
-    max-width: 700px;
 }
 
 /* GRID */
 .grid {
-    width: 100%;
-    max-width: 800px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-bottom: 48px;
+    gap: 22px;
+    margin-bottom: 50px;
 }
 
-/* CARDS */
+/* CARD */
 .card {
     background: #111;
     border-radius: 22px;
-    padding: 32px 20px;
+    padding: 28px;
     font-size: 20px;
     border: 1px solid #222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    transition: background .2s ease;
 }
 
-/* BOTÃO PRINCIPAL */
+.card:active {
+    background: #151515;
+}
+
+/* BOTÃO PREMIUM */
 .button-main {
     display: block;
     width: 100%;
-    max-width: 700px;
-    padding: 24px;
-    margin-bottom: 24px;
+    max-width: 760px;
+    margin: 0 auto 22px;
+    padding: 26px;
     font-size: 22px;
-    border-radius: 50px;
+    border-radius: 60px;
     border: none;
     background: linear-gradient(135deg, #d4af37, #f1d27a);
     color: #000;
@@ -90,23 +87,39 @@ h1 {
     margin-top: 6px;
 }
 
-/* BOTÃO SECUNDÁRIO */
+/* BOTÃO EXECUTIVO */
+.button-executivo {
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 26px;
+    padding: 22px;
+    font-size: 20px;
+    border-radius: 60px;
+    border: 1px solid rgba(212,175,55,.6);
+    background: rgba(212,175,55,.08);
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* FOTOGRAFIA */
 .button-secondary {
     display: block;
     width: 100%;
-    max-width: 640px;
+    max-width: 700px;
+    margin: 0 auto 36px;
     padding: 20px;
     font-size: 20px;
-    border-radius: 50px;
+    border-radius: 60px;
     border: none;
     background: linear-gradient(135deg, #c9a94a, #e5c97a);
     color: #000;
     font-weight: bold;
     text-decoration: none;
-    margin-bottom: 32px;
 }
 
-/* RODAPÉ */
+/* FOOTER */
 .footer {
     font-size: 14px;
     color: #777;
@@ -119,26 +132,30 @@ h1 {
 <div class="container">
 
     <h1>Black Experience</h1>
-
     <div class="subtitle">
         Transforme esta viagem em uma experiência exclusiva.
     </div>
 
+    <!-- EXPERIÊNCIAS -->
     <div class="grid">
         <a href="cinema.html" class="card">🎬 Cinema</a>
         <a href="jogos.html" class="card">🎮 Jogos</a>
         <a href="musica.html" class="card">🎵 Música</a>
         <a href="conforto.html" class="card">❄️ Conforto</a>
-        <a href="executivo.html" class="card">💼 Executivo</a>
     </div>
 
-    <!-- BOTÃO PRINCIPAL -->
+    <!-- PASSE PREMIUM -->
     <a href="premium.html" class="button-main">
         ⭐ Ativar Passe Premium
         <small>Entretenimento completo, bebidas e conforto exclusivo nesta viagem</small>
     </a>
 
-    <!-- BOTÃO FOTOGRAFIA -->
+    <!-- MODO EXECUTIVO -->
+    <a href="executivo.html" class="button-executivo">
+        💼 Modo Executivo
+    </a>
+
+    <!-- FOTOGRAFIA -->
     <a href="fotografia.html" class="button-secondary">
         📸 Fotografia Executiva no Carro
     </a>
