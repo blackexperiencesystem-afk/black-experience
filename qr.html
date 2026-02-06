@@ -18,7 +18,8 @@ body{
   height:100vh;
   text-align:center;
 }
-  .back{
+
+.back{
   font-size:14px;
   opacity:.45;
   text-decoration:none;
@@ -29,17 +30,17 @@ body{
 .back:hover{
   opacity:.8;
 }
-  .hidden-activate {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 80px;
-    height: 80px;
-    opacity: 0;
-    z-index: 999;
+
+/* BOTÃO INVISÍVEL DE ATIVAÇÃO */
+.hidden-activate{
+  position:fixed;
+  top:0;
+  right:0;
+  width:80px;
+  height:80px;
+  opacity:0;
+  z-index:999;
 }
-
-
 
 h1{
   font-size:34px;
@@ -95,10 +96,11 @@ e liberar sua experiência premium nesta viagem.
 <div class="info">
 Após o pagamento, mostre a confirmação ao motorista.
 </div>
-  <a href="javascript:history.back()" class="back">Voltar</a>
-  <a href="vip.html" class="hidden-activate"></a>
 
+<a href="javascript:history.back()" class="back">Voltar</a>
 
+<!-- ATIVAÇÃO INVISÍVEL AGORA LEVA PARA BOAS-VINDAS -->
+<a href="boas-vindas.html" class="hidden-activate"></a>
 
 </body>
 </html>
