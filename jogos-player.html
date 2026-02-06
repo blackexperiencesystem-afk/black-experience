@@ -93,28 +93,30 @@
     Sistema dedicado • Toque para jogar
   </div>
 
-  <script>
-   <script>
+ <script>
   function openPS2() {
-    window.location.href =
+    window.open(
       "intent://launch#Intent;" +
       "action=android.intent.action.MAIN;" +
       "category=android.intent.category.LAUNCHER;" +
       "package=xyz.aethersx2.android;" +
-      "end";
+      "end",
+      "_self"
+    );
   }
 
   function openN64() {
-    window.location.href =
+    window.open(
       "intent://launch#Intent;" +
       "action=android.intent.action.MAIN;" +
       "category=android.intent.category.LAUNCHER;" +
       "package=com.swordfish.lemuroid;" +
-      "end";
+      "end",
+      "_self"
+    );
   }
 </script>
 
-  </script>
 
 </body>
 </html>
