@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bem-vindo • Black Experience</title>
+
+<link rel="stylesheet" href="assets/style.css">
+
+<style>
+.container{ padding:48px 24px; }
+
+.section{ width:100%; margin-bottom:28px; text-align:left; }
+
+.section-title{
+  font-size:15px;
+  opacity:.7;
+  margin-bottom:10px;
+}
+
+.options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.option{
+  padding:12px 16px;
+  border-radius:12px;
+  border:1px solid rgba(212,175,55,0.4);
+  cursor:pointer;
+  font-size:14px;
+}
+
+.option.active{
+  background:#d4af37;
+  color:#000;
+}
+
+.enter{
+  margin-top:30px;
+  width:100%;
+  padding:20px;
+  border:none;
+  border-radius:18px;
+  font-size:18px;
+  font-weight:600;
+  background:linear-gradient(135deg,#d4af37,#f1d27a);
+  color:#000;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Bem-vindo ao Black Experience</h1>
+
+<div class="subtitle">
+Escolha uma bebida e um snack enquanto seguimos.
+</div>
+
+<!-- BEBIDAS -->
+<div class="section">
+  <div class="section-title">Bebida</div>
+  <div class="options" id="bebidas">
+    <div class="option">Água</div>
+    <div class="option">Água com gás</div>
+    <div class="option">Refrigerante</div>
+    <div class="option">Suco</div>
+  </div>
+</div>
+
+<!-- SNACKS -->
+<div class="section">
+  <div class="section-title">Snack</div>
+  <div class="options" id="snacks">
+    <div class="option">Chocolate</div>
+    <div class="option">Biscoito</div>
+    <div class="option">Amendoim</div>
+    <div class="option">Sem snack</div>
+  </div>
+</div>
+
+<button class="enter" onclick="enviarPedido()">
+Entrar na Área VIP
+</button>
+
+</div>
+
+<script>
+const scriptURL = "COLE_AQUI_SUA_URL_DO_WEBAPP";
+
+let bebida = "";
+let snack = "";
+
+/* seleção visual */
+document.querySelectorAll("#bebidas .option").forEach(el=>{
+  el.onclick = () => {
+    document.querySelectorAll("#bebidas .option").forEach(o=>o.classList.remove("active"));
+    el.classList.add("active");
+    bebida = el.innerText;
+  };
+});
+
+document.querySelectorAll("#snacks .option").forEach(el=>{
+  el.onclick = () => {
+    document.querySelectorAll("#snacks .option").forEach(o=>o.classList.remove("active"));
+    el.classList.add("active");
+    snack = el.innerText;
+  };
+});
+
+/* envio + redirecionamento */
+function enviarPedido(){
+
+  fetch(scriptURL, {
+    method:"POST",
+    body:new URLSearchParams({
+      bebida: bebida,
+      snack: snack
+    })
+  })
+  .finally(()=>{
+    window.location.href = "vip.html";
+  });
+}
+</script>
+
+</body>
+</html>
