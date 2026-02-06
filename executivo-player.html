@@ -75,7 +75,7 @@
     🤫 Modo silencioso
   </button>
   <button class="btn-exec" onclick="abrirSpotify()">
-    🎵 Ouvir Spotify
+    🎵 Abrir Spotify
   </button>
 </div>
 
@@ -92,14 +92,6 @@
   <div class="section-title">Durante a viagem</div>
   <button class="btn-exec" onclick="enviar('📍 Passageiro pediu parada rápida')">
     📍 Preciso de uma parada rápida
-  </button>
-</div>
-
-<!-- ADMIN -->
-<div class="section">
-  <div class="section-title">Administrativo</div>
-  <button class="btn-exec" onclick="enviar('🧾 Solicitação de recibo')">
-    🧾 Solicitar recibo da viagem
   </button>
 </div>
 
@@ -123,11 +115,12 @@ function enviar(msg){
   document.getElementById("ok").style.display="block";
 }
 
+/* ABRIR SPOTIFY IGUAL AO MUSICA-PLAYER */
 function abrirSpotify(){
-  if(typeof fully !== "undefined"){
+  if (typeof fully !== "undefined") {
     fully.startApplication("com.spotify.music");
   } else {
-    enviar("🎵 Passageiro pediu Spotify");
+    window.open("https://open.spotify.com/", "_blank");
   }
 }
 </script>
