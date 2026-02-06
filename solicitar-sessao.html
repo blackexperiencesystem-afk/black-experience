@@ -42,7 +42,7 @@ button{
     cursor:pointer;
 }
 
-/* LOADING PREMIUM */
+/* LOADING */
 #loading{
     position:fixed;
     inset:0;
@@ -68,15 +68,32 @@ button{
 Preencha os dados para agendar sua experiência fotográfica.
 </div>
 
-<div class="form">
+<form class="form" onsubmit="enviar(event)">
 
-<input type="text" id="nome" placeholder="Seu nome">
+<input
+type="text"
+id="nome"
+placeholder="Seu nome"
+required
+>
 
-<input type="email" id="email" placeholder="Seu email">
+<input
+type="email"
+id="email"
+placeholder="Seu email"
+required
+>
 
-<input type="tel" id="telefone" placeholder="Seu telefone">
+<input
+type="tel"
+id="telefone"
+placeholder="(00)00000-0000"
+maxlength="15"
+required
+oninput="formatarTelefone(this)"
+>
 
-<select id="estilo">
+<select id="estilo" required>
 <option value="">Estilo de fotografia</option>
 <option>Ensaio externo</option>
 <option>Executivo</option>
@@ -84,19 +101,37 @@ Preencha os dados para agendar sua experiência fotográfica.
 <option>Black Experience</option>
 </select>
 
-<button onclick="enviar()">Enviar solicitação</button>
+<button type="submit">Enviar solicitação</button>
+
+</form>
 
 </div>
 
-</div>
-
-<!-- LOADING -->
 <div id="loading">Carregando solicitação…</div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbz3k2L4xBpscC2nWRIGmgcKT7cS6Wsv4rTZo8XHuKNpMCBaTFbmvrizn59lEJZwF1kWRw/exec";
+const scriptURL = "COLE_AQUI_SUA_URL_DO_WEBAPP";
 
-function enviar(){
+/* MÁSCARA TELEFONE */
+function formatarTelefone(input){
+    let v = input.value.replace(/\D/g,"");
+
+    if(v.length > 11) v = v.slice(0,11);
+
+    if(v.length > 6){
+        v = `(${v.slice(0,2)})${v.slice(2,7)}-${v.slice(7)}`;
+    } else if(v.length > 2){
+        v = `(${v.slice(0,2)})${v.slice(2)}`;
+    } else if(v.length > 0){
+        v = `(${v}`;
+    }
+
+    input.value = v;
+}
+
+/* ENVIO */
+function enviar(e){
+    e.preventDefault();
 
     const nome = document.getElementById("nome").value.trim();
     const email = document.getElementById("email").value.trim();
@@ -104,20 +139,17 @@ function enviar(){
     const estilo = document.getElementById("estilo").value;
 
     if(!nome || !email || !telefone || !estilo){
-        alert("Preencha todos os campos.");
+        alert("Preencha todos os campos corretamente.");
         return;
     }
 
-    /* mostra loading imediatamente */
     document.getElementById("loading").style.display = "flex";
 
-    /* envia em segundo plano */
     fetch(scriptURL,{
         method:"POST",
         body:new URLSearchParams({ nome, email, telefone, estilo })
     });
 
-    /* redireciona após pequena pausa de UX */
     setTimeout(()=>{
         window.location.href = "confirmacao-foto.html";
     }, 400);
