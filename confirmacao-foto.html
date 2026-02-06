@@ -49,6 +49,7 @@ margin:0 auto 28px;
 to{transform:rotate(360deg);}
 }
 
+/* BOTÃO VOLTAR */
 .btn{
 display:inline-block;
 margin-top:12px;
@@ -58,6 +59,7 @@ background:linear-gradient(135deg,#d4af37,#f1d27a);
 color:#000;
 font-weight:600;
 text-decoration:none;
+cursor:pointer;
 }
 
 .small{
@@ -81,13 +83,24 @@ Sua sessão fotográfica será iniciada em instantes.<br>
 Prepare-se para registrar este momento com elegância.
 </p>
 
-<a href="vip.html" class="btn">Voltar ao ambiente premium</a>
+<!-- VOLTAR REAL -->
+<div class="btn" onclick="voltar()">Voltar</div>
 
 <div class="small">
 Black Experience
 </div>
 
 </div>
+
+<script>
+function voltar(){
+    if(document.referrer){
+        history.back();
+    }else{
+        window.location.href = "vip.html";
+    }
+}
+</script>
 
 </body>
 </html>
