@@ -6,36 +6,139 @@
 <title>Jogos • Black Experience</title>
 
 <style>
-*{
-    box-sizing:border-box;
+html, body {
+    height: 100%;
 }
 
-body{
-    margin:0;
-    background:#000;
-    color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:100vh;
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.container{
-    width:100%;
-    max-width:420px;
-    padding:32px 24px;
-    text-align:center;
+.container {
+    max-width: 600px;
+    width: 90%;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.logo{
-    font-size:26px;
-    font-weight:600;
-    letter-spacing:1px;
-    margin-bottom:6px;
+/* TÍTULO */
+h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
-.subtitle{
-    font-size:14px;
-    opacity:.6;
-    margin-bottom:40px
+/* FRASE DE IMPACTO */
+.subtitle {
+    font-size: 18px;
+    color: #bfa75a;
+    margin-bottom: 50px;
+    max-width: 500px;
+    line-height: 1.4;
+}
+
+/* BOTÕES */
+.menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+/* BOTÃO BASE */
+.btn {
+    padding: 26px;
+    border-radius: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(212,175,55,0.45);
+    background: radial-gradient(
+        circle at top,
+        #f1d27a 0%,
+        #d4af37 40%,
+        #b89b30 100%
+    );
+    color: #000;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+/* HOVER */
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn span {
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 6px;
+    color: #3a2e00;
+}
+
+/* VOLTAR */
+.voltar {
+    margin-top: 48px;
+    font-size: 13px;
+    opacity: .4;
+    color: #fff;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Jogos</h1>
+
+    <div class="subtitle">
+        Clássicos atemporais.<br>
+        Experiência de console em movimento.
+    </div>
+
+    <div class="menu">
+
+        <div class="btn" onclick="abrirPS2()">
+            🎮 PlayStation 2
+            <span>Os maiores clássicos da história dos videogames</span>
+        </div>
+
+        <div class="btn" onclick="abrirN64()">
+            🕹️ Nintendo 64
+            <span>Diversão icônica que atravessou gerações</span>
+        </div>
+
+    </div>
+
+    <a href="index.html" class="voltar">Voltar ao menu</a>
+
+</div>
+
+<script>
+function abrirPS2(){
+    if (typeof fully !== "undefined") {
+        fully.startApplication("xyz.aethersx2.android");
+    }
+}
+
+function abrirN64(){
+    if (typeof fully !== "undefined") {
+        fully.startApplication("com.swordfish.lemuroid");
+    }
+}
+</script>
+
+</body>
+</html>
