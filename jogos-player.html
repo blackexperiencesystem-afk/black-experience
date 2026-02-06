@@ -47,6 +47,48 @@
     margin-top:6px;
     color:#3a2e00;
 }
+
+/* BOTÃO SOLICITAR CONTROLE — mesmo estilo visual */
+.btn-control {
+    padding:18px;
+    border-radius:40px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    border:1px solid #2a2a2a;
+    background:#0b0b0b;
+    color:#fff;
+    transition:.2s;
+}
+
+.btn-control.clicked {
+    border-color:#d4af37;
+    box-shadow:
+        0 0 12px rgba(212,175,55,0.7),
+        0 0 24px rgba(212,175,55,0.35);
+    transform:scale(0.97);
+}
+
+/* TOAST DISCRETO */
+.toast {
+    position:fixed;
+    bottom:28px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:#111;
+    border:1px solid rgba(212,175,55,.5);
+    padding:12px 16px;
+    border-radius:14px;
+    font-size:13px;
+    opacity:0;
+    pointer-events:none;
+    transition:.35s;
+}
+
+.toast.show {
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
 </style>
 
 </head>
@@ -72,15 +114,24 @@
       🕹️ Nintendo 64
     </div>
 
+    <!-- NOVO BOTÃO SEM ALTERAR LAYOUT -->
+    <div class="btn-control" onclick="solicitarControle(this)">
+      🎮 Solicitar controle ao motorista
+    </div>
+
   </div>
 
   <div class="back" onclick="goBack()">← voltar</div>
 
 </div>
 
+<div class="toast" id="toast">Controle solicitado ao motorista ✔</div>
+
 <script src="assets/ui.js"></script>
 
 <script>
+const scriptURL = "COLE_AQUI_SUA_URL_DO_WEBAPP";
+
 function abrirPS2(){
     if(typeof fully !== "undefined"){
         fully.startApplication("xyz.aethersx2.android");
@@ -91,6 +142,26 @@ function abrirN64(){
     if(typeof fully !== "undefined"){
         fully.startApplication("com.swordfish.lemuroid");
     }
+}
+
+function solicitarControle(btn){
+
+    /* brilho suave */
+    btn.classList.add("clicked");
+    setTimeout(()=>btn.classList.remove("clicked"), 600);
+
+    /* envia para Telegram */
+    fetch(scriptURL,{
+        method:"POST",
+        body:new URLSearchParams({
+            executivo:"🎮 Passageiro solicitou controle do videogame"
+        })
+    });
+
+    /* aviso visual */
+    const toast = document.getElementById("toast");
+    toast.classList.add("show");
+    setTimeout(()=>toast.classList.remove("show"), 2200);
 }
 </script>
 
