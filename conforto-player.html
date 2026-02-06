@@ -145,31 +145,18 @@ h1{
     <button class="opcao" onclick="selectSingle(this,'aroma','Desligado')">⛔ Difusor desligado</button>
 </div>
 
-<!-- BEBIDAS & SNACKS -->
-<div class="grupo">
-    <div class="titulo">Bebidas & Snacks</div>
-    <div class="desc">Selecione até dois itens disponíveis.</div>
+<button class="confirmar" onclick="enviar()">Confirmar ajustes</button>
 
-    <button class="opcao" onclick="toggleItem(this,'Água sem gás')">💧 Água sem gás</button>
-    <button class="opcao" onclick="toggleItem(this,'Água com gás')">🥤 Água com gás</button>
-    <button class="opcao" onclick="toggleItem(this,'Mini Coca-Cola')">🥤 Mini Coca-Cola</button>
-    <button class="opcao" onclick="toggleItem(this,'Mini Ruffles')">🍟 Mini Ruffles</button>
-    <button class="opcao" onclick="toggleItem(this,'KitKat')">🍫 KitKat</button>
-    <button class="opcao" onclick="toggleItem(this,'Amendoim')">🥜 Amendoim</button>
-</div>
-
-<button class="confirmar" onclick="enviar()">Confirmar pedido</button>
-
-<div class="ok" id="ok">Pedido enviado ao motorista ✔</div>
+<div class="ok" id="ok">Preferências enviadas ao motorista ✔</div>
 
 <a href="vip.html" class="gold-button" id="premiumBtn">
-    ⭐ Continuar Experiência Premium
+    ⭐ Voltar para Área VIP
 </a>
 
 </div>
 
 <script>
-let clima="", aroma="", itens=[];
+let clima="", aroma="";
 
 function selectSingle(btn, tipo, valor){
     let grupo = btn.parentElement.querySelectorAll(".opcao");
@@ -180,35 +167,20 @@ function selectSingle(btn, tipo, valor){
     if(tipo==="aroma") aroma = valor;
 }
 
-function toggleItem(btn, valor){
-    if(itens.includes(valor)){
-        itens = itens.filter(i=>i!==valor);
-        btn.classList.remove("selecionado");
-        return;
-    }
-
-    if(itens.length>=2){
-        alert("Escolha no máximo 2 itens.");
-        return;
-    }
-
-    itens.push(valor);
-    btn.classList.add("selecionado");
-}
-
 function enviar(){
 
     if(!clima){ alert("Selecione a climatização."); return; }
     if(!aroma){ alert("Selecione a aromatização."); return; }
 
-    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfu2RVjCX-ocfrzTB5TruBUuWaG6FB32AW5AbBCjPdmSh3DZQ/formResponse";
+    const scriptURL = "COLE_AQUI_SUA_URL_DO_WEBAPP";
 
-    const data = new FormData();
-    data.append("entry.1771049017", clima);
-    data.append("entry.1800625", aroma);
-    data.append("entry.1927228480", itens.join(", "));
-
-    fetch(formURL, { method:"POST", mode:"no-cors", body:data });
+    fetch(scriptURL, {
+        method:"POST",
+        body:new URLSearchParams({
+            clima: clima,
+            aroma: aroma
+        })
+    });
 
     document.getElementById("ok").style.display="block";
     document.getElementById("premiumBtn").style.display="block";
