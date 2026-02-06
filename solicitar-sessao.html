@@ -10,7 +10,7 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
 
 body{
@@ -29,11 +29,12 @@ body{
   padding:40px 20px;
 }
 
-/* TÍTULO */
+/* TÍTULO CENTRALIZADO */
 h1{
   font-size:32px;
   font-weight:600;
   margin-bottom:30px;
+  text-align:center;
 }
 
 /* CAMPOS */
@@ -91,8 +92,16 @@ input, select{
 
   <form id="form">
     <input name="nome" placeholder="Seu nome" required>
+
     <input name="email" type="email" placeholder="Seu email" required>
-    <input name="telefone" placeholder="Seu telefone" required>
+
+    <input
+      name="telefone"
+      id="telefone"
+      placeholder="(00) 00000-0000"
+      maxlength="15"
+      required
+    >
 
     <select name="estilo" required>
       <option value="">Estilo de fotografia</option>
@@ -112,10 +121,37 @@ input, select{
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbzmwI0MnZiODsnYT8S2cqMNKTcY_013Klvvg3mGbA-5XqfEshIyaFAUqpe4iZskkAcr/exec";
+const scriptURL = "COLE_AQUI_SUA_URL_DO_WEBAPP";
 
+/* ===== MÁSCARA DE TELEFONE ===== */
+const telefoneInput = document.getElementById("telefone");
+
+telefoneInput.addEventListener("input", function(e){
+  let valor = e.target.value.replace(/\D/g, "");
+
+  if (valor.length > 11) valor = valor.slice(0,11);
+
+  if (valor.length > 6){
+    valor = `(${valor.slice(0,2)}) ${valor.slice(2,7)}-${valor.slice(7)}`;
+  } else if (valor.length > 2){
+    valor = `(${valor.slice(0,2)}) ${valor.slice(2)}`;
+  } else if (valor.length > 0){
+    valor = `(${valor}`;
+  }
+
+  e.target.value = valor;
+});
+
+/* ===== ENVIO DO FORMULÁRIO ===== */
 document.getElementById("form").addEventListener("submit", function(e){
   e.preventDefault();
+
+  const telefoneValido = /^\(\d{2}\) \d{5}-\d{4}$/.test(telefoneInput.value);
+
+  if (!telefoneValido){
+    alert("Digite um telefone válido no formato (00) 00000-0000");
+    return;
+  }
 
   fetch(scriptURL, {
     method:"POST",
@@ -130,6 +166,7 @@ document.getElementById("form").addEventListener("submit", function(e){
   });
 });
 
+/* ===== BOTÃO VOLTAR ===== */
 function goBack(){
   if (window.history.length > 1){
     window.history.back();
