@@ -6,135 +6,130 @@
 <title>Solicitar Sessão</title>
 
 <style>
-.back-footer{
-  width:100%;
-  text-align:center;
-  margin:80px 0 30px;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-.back-footer span{
-  color:#777;
+body{
+  background:#000;
+  color:#fff;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* CONTAINER CENTRAL */
+.page{
+  width:100%;
+  max-width:420px;
+  padding:40px 20px;
+}
+
+/* TÍTULO */
+h1{
+  font-size:32px;
+  font-weight:600;
+  margin-bottom:30px;
+}
+
+/* CAMPOS */
+input, select{
+  width:100%;
+  padding:14px;
+  margin-bottom:14px;
+  border-radius:10px;
+  border:1px solid #222;
+  background:#0a0a0a;
+  color:#fff;
+  font-size:15px;
+}
+
+/* BOTÃO PRINCIPAL */
+.btn-primary{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:10px;
+  background:#d4af37;
+  color:#000;
+  font-weight:600;
+  font-size:15px;
+  cursor:pointer;
+  margin-top:10px;
+  transition:.2s;
+}
+
+.btn-primary:hover{
+  opacity:.9;
+}
+
+/* VOLTAR DISCRETO */
+.back{
+  text-align:center;
+  margin-top:60px;
   font-size:13px;
-  letter-spacing:1px;
+  color:#777;
   cursor:pointer;
   transition:.2s;
 }
 
-.back-footer span:hover{
-  color:#000;
-}
-
-}
-
-}
-
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#000;
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:100vh;
-}
-
-.container{
-    width:90%;
-    max-width:400px;
-}
-
-h1{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-input, select, button{
-    width:100%;
-    padding:12px;
-    margin-bottom:12px;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-}
-
-input, select{
-    background:#111;
-    color:#fff;
-}
-
-button{
-    background:#d4af37;
-    color:#000;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-button:hover{
-    opacity:0.9;
-}
-
-#msg{
-    text-align:center;
-    margin-top:10px;
-    display:none;
+.back:hover{
+  color:#fff;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>Solicitar Sessão</h1>
+<div class="page">
 
-    <form id="form">
-        <input type="text" name="nome" placeholder="Seu nome" required>
-        <input type="email" name="email" placeholder="Seu email" required>
-        <input type="tel" name="telefone" placeholder="Seu telefone" required>
+  <h1>Solicitar Sessão</h1>
 
-        <select name="estilo" required>
-            <option value="">Estilo de fotografia</option>
-            <option>Lifestyle Jovem (dono do carro)</option>
-            <option>Executivo / Workaholic</option>
-            <option>Casual Premium (casal ou amigos)</option>
-            <option>Influencer / Social Media</option>
-        </select>
+  <form id="form">
+    <input name="nome" placeholder="Seu nome" required>
+    <input name="email" type="email" placeholder="Seu email" required>
+    <input name="telefone" placeholder="Seu telefone" required>
 
-        <button type="submit">Enviar solicitação</button>
-      
+    <select name="estilo" required>
+      <option value="">Estilo de fotografia</option>
+      <option>Retrato Premium</option>
+      <option>Ensaio Executivo</option>
+      <option>Casal / Amigos</option>
+      <option>Black Experience</option>
+    </select>
 
-    </form>
+    <button type="submit" class="btn-primary">
+      Enviar solicitação
+    </button>
+  </form>
 
-    <div id="msg">Solicitação enviada com sucesso.</div>
+  <div class="back" onclick="goBack()">← voltar</div>
+
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbzmwI0MnZiODsnYT8S2cqMNKTcY_013Klvvg3mGbA-5XqfEshIyaFAUqpe4iZskkAcr/exec";
-;
+const scriptURL = "COLE_AQUI_SUA_URL_DO_WEBAPP";
 
-document.getElementById("form").addEventListener("submit", e => {
-    e.preventDefault();
+document.getElementById("form").addEventListener("submit", function(e){
+  e.preventDefault();
 
-    fetch(scriptURL, {
-        method: "POST",
-        body: new FormData(e.target)
-    })
-    .then(() => {
-        document.getElementById("msg").style.display = "block";
-        e.target.reset();
-    })
-    .catch(() => {
-        alert("Erro ao enviar. Tente novamente.");
-    });
+  fetch(scriptURL, {
+    method:"POST",
+    body:new FormData(this)
+  })
+  .then(()=>{
+    alert("Solicitação enviada com sucesso.");
+    this.reset();
+  })
+  .catch(()=>{
+    alert("Erro ao enviar. Tente novamente.");
+  });
 });
- 
 
-</script>
-<div class="back-footer">
-  <span onclick="goBack()">← voltar</span>
-</div>
-
-<script>
 function goBack(){
   if (window.history.length > 1){
     window.history.back();
@@ -143,8 +138,6 @@ function goBack(){
   }
 }
 </script>
-
-
 
 </body>
 </html>
