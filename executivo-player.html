@@ -3,63 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modo Executivo • Black Experience</title>
+<title>Modo Executivo</title>
 
 <link rel="stylesheet" href="assets/style.css">
 
 <style>
-/* Ajustes específicos do modo executivo */
+.container{ padding:48px 22px 80px; }
 
-.container{
-    padding:50px 24px;
+.section{ margin-bottom:28px; text-align:left; }
+
+.section-title{
+  font-size:14px;
+  opacity:.6;
+  margin-bottom:10px;
+  letter-spacing:.5px;
 }
 
-/* Título mais sóbrio */
-h1{
-    font-size:44px;
-    margin-bottom:10px;
-}
-
-/* Subtítulo discreto */
-.subtitle{
-    font-size:18px;
-    color:#9c8b4b;
-    margin-bottom:48px;
-    max-width:520px;
-}
-
-/* Botões executivos */
-.menu{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    gap:26px;
-}
-
-/* Estilo mais sóbrio que o dourado forte */
 .btn-exec{
-    padding:26px;
-    border-radius:22px;
-    font-size:20px;
-    font-weight:600;
-    cursor:pointer;
-    border:1px solid rgba(212,175,55,0.35);
-    background:linear-gradient(135deg,#1a1a1a,#0d0d0d);
-    color:#d4af37;
-    transition:.18s ease;
-    text-align:center;
+  width:100%;
+  padding:18px;
+  margin:8px 0;
+  border-radius:16px;
+  border:1px solid #2a2a2a;
+  background:#0b0b0b;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
 }
 
-.btn-exec:active{
-    transform:scale(0.97);
-}
+.btn-exec:active{ transform:scale(.97); }
 
-.btn-exec span{
-    display:block;
-    font-size:14px;
-    font-weight:normal;
-    margin-top:6px;
-    color:#8c7a32;
+.ok{
+  display:none;
+  margin-top:18px;
+  font-size:14px;
+  opacity:.8;
 }
 </style>
 </head>
@@ -68,58 +46,89 @@ h1{
 
 <div class="container">
 
-  <h1>Modo Executivo</h1>
+<h1>Modo Executivo</h1>
+<div class="subtitle">Controle silencioso da sua viagem</div>
 
-  <div class="subtitle">
-    Ambiente silencioso e produtivo para trabalhar,
-    planejar ou apenas focar durante a viagem.
-  </div>
+<!-- ENERGIA -->
+<div class="section">
+  <div class="section-title">Energia</div>
+  <button class="btn-exec" onclick="enviar('🔋 Power Bank solicitado')">
+    🔋 Solicitar Power Bank ultra-rápido
+  </button>
+</div>
 
-  <div class="menu">
+<!-- RITMO -->
+<div class="section">
+  <div class="section-title">Ritmo da viagem</div>
+  <button class="btn-exec" onclick="enviar('⚡ Passageiro com pressa')">
+    ⚡ Estou com pressa
+  </button>
+  <button class="btn-exec" onclick="enviar('😌 Direção tranquila solicitada')">
+    😌 Prefiro uma direção tranquila
+  </button>
+</div>
 
-    <!-- WHATSAPP -->
-    <div class="btn-exec" onclick="abrirWhatsApp()">
-      💬 WhatsApp
-      <span>Responda mensagens com privacidade</span>
-    </div>
+<!-- SOM -->
+<div class="section">
+  <div class="section-title">Ambiente sonoro</div>
+  <button class="btn-exec" onclick="enviar('🤫 Ativar modo silencioso')">
+    🤫 Modo silencioso
+  </button>
+  <button class="btn-exec" onclick="abrirSpotify()">
+    🎵 Ouvir Spotify
+  </button>
+</div>
 
-    <!-- GOOGLE DOCS -->
-    <div class="btn-exec" onclick="abrirDocs()">
-      📝 Documentos
-      <span>Acesse arquivos e anotações importantes</span>
-    </div>
+<!-- CONFORTO -->
+<div class="section">
+  <div class="section-title">Conforto da cabine</div>
+  <button class="btn-exec" onclick="window.location.href='conforto-player.html'">
+    🌡️ Ajustar climatização e aroma
+  </button>
+</div>
 
-    <!-- NAVEGADOR -->
-    <div class="btn-exec" onclick="abrirNavegador()">
-      🌐 Navegação Web
-      <span>Pesquise ou acompanhe informações em tempo real</span>
-    </div>
+<!-- NECESSIDADES -->
+<div class="section">
+  <div class="section-title">Durante a viagem</div>
+  <button class="btn-exec" onclick="enviar('📍 Passageiro pediu parada rápida')">
+    📍 Preciso de uma parada rápida
+  </button>
+</div>
 
-  </div>
+<!-- ADMIN -->
+<div class="section">
+  <div class="section-title">Administrativo</div>
+  <button class="btn-exec" onclick="enviar('🧾 Solicitação de recibo')">
+    🧾 Solicitar recibo da viagem
+  </button>
+</div>
 
-  <div class="back" onclick="goBack()">← voltar</div>
+<div class="ok" id="ok">Solicitação enviada ao motorista ✔</div>
+
+<div class="back" onclick="goBack()">← voltar</div>
 
 </div>
 
 <script src="assets/ui.js"></script>
 
 <script>
-function abrirWhatsApp(){
-    if(typeof fully !== "undefined"){
-        fully.startApplication("com.whatsapp");
-    }
+const scriptURL = "COLE_AQUI_SUA_URL_DO_WEBAPP";
+
+function enviar(msg){
+  fetch(scriptURL,{
+    method:"POST",
+    body:new URLSearchParams({ executivo: msg })
+  });
+
+  document.getElementById("ok").style.display="block";
 }
 
-function abrirDocs(){
-    if(typeof fully !== "undefined"){
-        fully.startApplication("com.google.android.apps.docs");
-    }
-}
-
-function abrirNavegador(){
-    if(typeof fully !== "undefined"){
-        fully.startApplication("com.android.chrome");
-    }
+function abrirSpotify(){
+  if(typeof fully !== "undefined"){
+    fully.startApplication("com.spotify.music");
+  } else {
+    enviar("🎵 Passageiro pediu Spotify");
+  }
 }
 </script>
 
