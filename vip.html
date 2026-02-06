@@ -6,43 +6,50 @@
 <title>Passe Premium</title>
 
 <style>
+html, body{
+    height:100%;
+}
+
 body{
     margin:0;
     background:#000;
     color:#fff;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-/* WRAPPER CENTRAL */
+/* WRAPPER CENTRAL REAL */
 .wrapper{
+    width:100%;
     max-width:520px;
-    margin:0 auto;
-    padding:60px 20px 80px;
+    padding:40px 20px;
     text-align:center;
 }
 
 /* TÍTULO */
 h1{
     font-size:42px;
-    margin-bottom:8px;
+    margin-bottom:6px;
 }
 
 /* SUBTÍTULO */
 .sub{
     opacity:.55;
-    margin-bottom:36px;
+    margin-bottom:30px;
     font-size:15px;
 }
 
-/* GRID PRINCIPAL */
+/* GRID */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:18px;
-    margin-bottom:30px;
+    margin-bottom:28px;
 }
 
-/* BOTÕES DO GRID */
+/* BOTÕES GRID */
 .button{
     padding:20px;
     border-radius:18px;
@@ -50,10 +57,8 @@ h1{
     color:#000;
     font-size:16px;
     font-weight:600;
-
     background:linear-gradient(135deg,#d4af37,#f1d27a);
     box-shadow:0 6px 18px rgba(212,175,55,0.25);
-
     transition:.2s;
 }
 
@@ -61,14 +66,17 @@ h1{
     transform:scale(0.97);
 }
 
-/* BOTÃO EXECUTIVO (DESTAQUE DISCRETO) */
+/* BOTÃO EXECUTIVO */
 .executivo{
     display:block;
-    margin:0 auto 12px;
-    padding:18px;
+    margin:0 auto 14px;
+    padding:20px;
     width:100%;
-    border-radius:16px;
+    border-radius:18px;
     text-decoration:none;
+    font-size:17px;
+    font-weight:600;
+    color:#000;
 
     background:linear-gradient(
         135deg,
@@ -77,10 +85,6 @@ h1{
         #d4af37 100%
     );
 
-    color:#000;
-    font-size:16px;
-    font-weight:600;
-
     box-shadow:0 6px 18px rgba(212,175,55,0.25);
 }
 
@@ -88,12 +92,12 @@ h1{
     transform:scale(0.97);
 }
 
-/* BOTÃO FOTOGRAFIA */
+/* FOTOGRAFIA */
 .secondary{
     display:block;
-    margin-top:10px;
-    padding:16px;
-    border-radius:16px;
+    margin:0 auto 18px;
+    padding:18px;
+    border-radius:18px;
     text-decoration:none;
     color:#d4af37;
     border:1px solid rgba(212,175,55,0.5);
@@ -102,7 +106,6 @@ h1{
 /* ENCERRAR */
 .close{
     display:inline-block;
-    margin-top:22px;
     font-size:13px;
     opacity:.4;
     text-decoration:none;
@@ -125,12 +128,10 @@ h1{
     <a class="button" href="jogos-player.html">🎮 Jogos</a>
 </div>
 
-<!-- MODO EXECUTIVO -->
 <a class="executivo" href="executivo-player.html">
     💼 Modo Executivo
 </a>
 
-<!-- FOTOGRAFIA -->
 <a class="secondary" href="fotografia.html">
     📸 Fotografia Executiva no carro
 </a>
