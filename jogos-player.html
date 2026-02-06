@@ -94,15 +94,26 @@
   </div>
 
   <script>
-    function openPS2() {
-      // AetherSX2
-      window.location.href = "intent://#Intent;package=xyz.aethersx2.android;end";
-    }
+   <script>
+  function openPS2() {
+    window.location.href =
+      "intent://launch#Intent;" +
+      "action=android.intent.action.MAIN;" +
+      "category=android.intent.category.LAUNCHER;" +
+      "package=xyz.aethersx2.android;" +
+      "end";
+  }
 
-    function openN64() {
-      // Lemuroid
-      window.location.href = "intent://#Intent;package=com.swordfish.lemuroid;end";
-    }
+  function openN64() {
+    window.location.href =
+      "intent://launch#Intent;" +
+      "action=android.intent.action.MAIN;" +
+      "category=android.intent.category.LAUNCHER;" +
+      "package=com.swordfish.lemuroid;" +
+      "end";
+  }
+</script>
+
   </script>
 
 </body>
