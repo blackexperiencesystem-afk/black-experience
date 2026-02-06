@@ -1,177 +1,106 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solicitar Sessão Fotográfica</title>
+<title>Solicitar Sessão</title>
 
 <style>
 body{
     margin:0;
+    font-family:Arial, sans-serif;
     background:#000;
     color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
     display:flex;
     align-items:center;
     justify-content:center;
     height:100vh;
 }
 
-.wrapper{
-    max-width:520px;
-    margin:0 auto;
-    padding:40px 20px 80px;
-    text-align:center;
+.container{
+    width:90%;
+    max-width:400px;
 }
 
 h1{
-    font-size:34px;
-    margin-bottom:6px;
+    text-align:center;
+    margin-bottom:20px;
 }
 
-.sub{
-    opacity:.55;
-    font-size:15px;
-    margin-bottom:32px;
-}
-
-.grupo{
-    margin-bottom:22px;
-    text-align:left;
-}
-
-input, select, textarea{
+input, select, button{
     width:100%;
-    padding:15px;
+    padding:12px;
     margin-bottom:12px;
-    border-radius:14px;
     border:none;
-    background:#0b0b0b;
+    border-radius:8px;
+    font-size:16px;
+}
+
+input, select{
+    background:#111;
     color:#fff;
-    font-size:15px;
 }
 
-textarea{
-    resize:none;
-}
-
-/* BOTÃO DOURADO */
-.confirmar{
-    margin-top:18px;
-    width:100%;
-    padding:18px;
-    border:none;
-    border-radius:40px;
-    font-size:18px;
-    font-weight:600;
-    background:linear-gradient(135deg,#d4af37,#f1d27a);
+button{
+    background:#d4af37;
     color:#000;
+    font-weight:bold;
     cursor:pointer;
 }
 
-/* FEEDBACK */
-.ok{
+button:hover{
+    opacity:0.9;
+}
+
+#msg{
+    text-align:center;
+    margin-top:10px;
     display:none;
-    margin-top:18px;
-    font-size:15px;
-    opacity:.85;
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="container">
+    <h1>Solicitar Sessão</h1>
 
-<h1>Sessão Fotográfica</h1>
-<div class="sub">Solicitação rápida e discreta durante a viagem</div>
+    <form id="form">
+        <input type="text" name="nome" placeholder="Seu nome" required>
+        <input type="email" name="email" placeholder="Seu email" required>
+        <input type="tel" name="telefone" placeholder="Seu telefone" required>
 
-<form id="form">
+        <select name="estilo" required>
+            <option value="">Estilo de fotografia</option>
+            <option>Casal</option>
+            <option>Retrato</option>
+            <option>Ensaio externo</option>
+            <option>Ensaio premium Black</option>
+        </select>
 
-<div class="grupo">
-<input type="text" name="entry.1983516271" placeholder="Seu nome" required>
-</div>
+        <button type="submit">Enviar solicitação</button>
+    </form>
 
-<div class="grupo">
-<input type="tel" name="entry.768217560" placeholder="Telefone para envio das fotos" required>
-</div>
-
-<div class="grupo">
-<select name="entry.86139815" required>
-    <option value="">Estilo da sessão</option>
-    <option>Executivo</option>
-    <option>LinkedIn</option>
-    <option>Criativo</option>
-    <option>Casual</option>
-</select>
-</div>
-
-<div class="grupo">
-<textarea name="entry.471992005" placeholder="Observações (opcional)" rows="3"></textarea>
-</div>
-
-<button class="confirmar" type="submit">
-📸 Confirmar solicitação
-</button>
-
-</form>
-
-<div class="ok" id="msg">
-Solicitação enviada ao motorista ✔<br>
-Prepare-se para sua sessão ✨
-</div>
-
+    <div id="msg">Solicitação enviada com sucesso.</div>
 </div>
 
 <script>
-const form = document.getElementById("form");
+const scriptURL = "https://script.google.com/macros/s/AKfycbx41rlusyRToSwGCmmmnl1QPbpP9QZKjfRWLtcnr_eAjGuuB6UcDn_hrCHkRIPmKqI4vg/exec";
 
-const TELEGRAM_TOKEN = "8557027295:AAEjz-phGg2qZs1rqHTkwJrith24GhMqxpo";
-const TELEGRAM_CHAT_ID = "6570540085";
-
-form.addEventListener("submit", function(e){
+document.getElementById("form").addEventListener("submit", e => {
     e.preventDefault();
 
-    const data = new FormData(form);
-
-    /* 1️⃣ ENVIA PARA GOOGLE FORMS (PLANILHA) */
-    fetch(
-        "https://docs.google.com/forms/d/e/1FAIpQLSf0Eykt8YrW3U3lxCUKUG-hB8rN0GPHh_uiEoav6AXcgOrB7w/formResponse
-",
-        {
-            method:"POST",
-            mode:"no-cors",
-            body:data
-        }
-    );
-
-    /* 2️⃣ ENVIA PARA TELEGRAM */
-    const nome = data.get("entry.1983516271");
-    const telefone = data.get("entry.768217560");
-    const estilo = data.get("entry.86139815");
-    const obs = data.get("entry.471992005") || "—";
-
-    const mensagem =
-`📸 *Nova sessão solicitada*
-
-👤 Nome: ${nome}
-📞 Telefone: ${telefone}
-🎯 Estilo: ${estilo}
-📝 Obs: ${obs}`;
-
-    fetch(`https://api.telegram.org/bot${8557027295:AAEjz-phGg2qZs1rqHTkwJrith24GhMqxpo}/sendMessage`,{
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify({
-            chat_id: 6570540085,
-            text: mensagem,
-            parse_mode: "Markdown"
-        })
+    fetch(scriptURL, {
+        method: "POST",
+        body: new FormData(e.target)
+    })
+    .then(() => {
+        document.getElementById("msg").style.display = "block";
+        e.target.reset();
+    })
+    .catch(() => {
+        alert("Erro ao enviar. Tente novamente.");
     });
-
-    /* 3️⃣ FEEDBACK VISUAL */
-    form.reset();
-    document.getElementById("msg").style.display = "block";
 });
 </script>
 
