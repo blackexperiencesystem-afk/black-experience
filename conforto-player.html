@@ -13,18 +13,12 @@ body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
 }
 
-
-.container{
-    width:92%;
-    max-width:520px;
-    text-align:center;
-}
-    .wrapper{
+.wrapper{
     max-width:520px;
     margin:0 auto;
     padding:40px 20px 80px;
+    text-align:center;
 }
-
 
 h1{
     font-size:34px;
@@ -71,6 +65,7 @@ h1{
     background:#1a1405;
 }
 
+/* BOTÃO CONFIRMAR */
 .confirmar{
     margin-top:18px;
     width:100%;
@@ -84,20 +79,41 @@ h1{
     cursor:pointer;
 }
 
+/* MENSAGEM OK */
 .ok{
     display:none;
     margin-top:18px;
     font-size:15px;
-    opacity:.8;
+    opacity:.85;
 }
 
-.voltar{
-    display:inline-block;
-    margin-top:16px;
-    font-size:13px;
-    opacity:.4;
+/* BOTÃO CONTINUAR PREMIUM */
+.gold-button{
+    display:none;
+    margin-top:22px;
+    width:100%;
+    padding:20px;
+    border-radius:40px;
+    font-size:18px;
+    font-weight:700;
     text-decoration:none;
-    color:#fff;
+    text-align:center;
+
+    background:linear-gradient(
+        135deg,
+        #d4af37 0%,
+        #f1d27a 50%,
+        #d4af37 100%
+    );
+
+    color:#000;
+    box-shadow:
+        0 10px 30px rgba(212,175,55,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+.gold-button:active{
+    transform:scale(0.97);
 }
 </style>
 </head>
@@ -106,48 +122,49 @@ h1{
 
 <div class="wrapper">
 
-
 <h1>Conforto Premium</h1>
 <div class="sub">Personalize o ambiente da sua viagem</div>
 
 <!-- CLIMATIZAÇÃO -->
 <div class="grupo">
-<div class="titulo">Climatização</div>
-<div class="desc">Escolha apenas uma opção de temperatura.</div>
+    <div class="titulo">Climatização</div>
+    <div class="desc">Escolha apenas uma opção de temperatura.</div>
 
-<button class="opcao" onclick="selectSingle(this,'clima','Mais frio')">❄️ Mais frio</button>
-<button class="opcao" onclick="selectSingle(this,'clima','Padrão')">🌡️ Padrão</button>
-<button class="opcao" onclick="selectSingle(this,'clima','Mais quente')">🔥 Mais quente</button>
-<button class="opcao" onclick="selectSingle(this,'clima','Ar desligado')">🚫 Ar desligado</button>
+    <button class="opcao" onclick="selectSingle(this,'clima','Mais frio')">❄️ Mais frio</button>
+    <button class="opcao" onclick="selectSingle(this,'clima','Padrão')">🌡️ Padrão</button>
+    <button class="opcao" onclick="selectSingle(this,'clima','Mais quente')">🔥 Mais quente</button>
+    <button class="opcao" onclick="selectSingle(this,'clima','Ar desligado')">🚫 Ar desligado</button>
 </div>
 
 <!-- AROMATIZAÇÃO -->
 <div class="grupo">
-<div class="titulo">Aromatização</div>
-<div class="desc">Controle o difusor aromático do ambiente.</div>
+    <div class="titulo">Aromatização</div>
+    <div class="desc">Controle o difusor aromático do ambiente.</div>
 
-<button class="opcao" onclick="selectSingle(this,'aroma','Ligado')">🌿 Difusor ligado</button>
-<button class="opcao" onclick="selectSingle(this,'aroma','Desligado')">⛔ Difusor desligado</button>
+    <button class="opcao" onclick="selectSingle(this,'aroma','Ligado')">🌿 Difusor ligado</button>
+    <button class="opcao" onclick="selectSingle(this,'aroma','Desligado')">⛔ Difusor desligado</button>
 </div>
 
-<!-- ITENS -->
+<!-- BEBIDAS & SNACKS -->
 <div class="grupo">
-<div class="titulo">Bebidas & Snacks</div>
-<div class="desc">Selecione até dois itens disponíveis.</div>
+    <div class="titulo">Bebidas & Snacks</div>
+    <div class="desc">Selecione até dois itens disponíveis.</div>
 
-<button class="opcao" onclick="toggleItem(this,'Água sem gás')">💧 Água sem gás</button>
-<button class="opcao" onclick="toggleItem(this,'Água com gás')">🥤 Água com gás</button>
-<button class="opcao" onclick="toggleItem(this,'Mini Coca-Cola')">🥤 Mini Coca-Cola</button>
-<button class="opcao" onclick="toggleItem(this,'Mini Ruffles')">🍟 Mini Ruffles</button>
-<button class="opcao" onclick="toggleItem(this,'KitKat')">🍫 KitKat</button>
-<button class="opcao" onclick="toggleItem(this,'Amendoim')">🥜 Amendoim</button>
+    <button class="opcao" onclick="toggleItem(this,'Água sem gás')">💧 Água sem gás</button>
+    <button class="opcao" onclick="toggleItem(this,'Água com gás')">🥤 Água com gás</button>
+    <button class="opcao" onclick="toggleItem(this,'Mini Coca-Cola')">🥤 Mini Coca-Cola</button>
+    <button class="opcao" onclick="toggleItem(this,'Mini Ruffles')">🍟 Mini Ruffles</button>
+    <button class="opcao" onclick="toggleItem(this,'KitKat')">🍫 KitKat</button>
+    <button class="opcao" onclick="toggleItem(this,'Amendoim')">🥜 Amendoim</button>
 </div>
 
 <button class="confirmar" onclick="enviar()">Confirmar pedido</button>
 
 <div class="ok" id="ok">Pedido enviado ao motorista ✔</div>
 
-<a class="voltar" href="vip.html">Voltar</a>
+<a href="vip.html" class="gold-button" id="premiumBtn">
+    ⭐ Continuar Experiência Premium
+</a>
 
 </div>
 
@@ -194,6 +211,7 @@ function enviar(){
     fetch(formURL, { method:"POST", mode:"no-cors", body:data });
 
     document.getElementById("ok").style.display="block";
+    document.getElementById("premiumBtn").style.display="block";
 }
 </script>
 
