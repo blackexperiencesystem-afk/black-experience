@@ -8,9 +8,20 @@
 <link rel="stylesheet" href="assets/style.css">
 
 <style>
-/* Ajustes específicos da página Jogos */
 .container {
     padding: 40px 24px;
+}
+
+/* ANIMAÇÃO DE ENTRADA */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .menu {
@@ -21,6 +32,7 @@
     margin-top:30px;
 }
 
+/* BOTÕES PRINCIPAIS */
 .btn-game {
     padding:22px;
     border-radius:60px;
@@ -30,25 +42,30 @@
     border:1px solid rgba(212,175,55,0.45);
     background:radial-gradient(circle at top,#f1d27a 0%,#d4af37 40%,#b89b30 100%);
     color:#000;
-    transition:transform .15s ease, box-shadow .15s ease;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        filter .18s ease;
+
+    animation: fadeUp .5s ease both;
+}
+
+.btn-game:nth-child(2){
+    animation-delay: .06s;
 }
 
 .btn-game:active {
     transform:scale(0.97);
+    box-shadow:0 6px 18px rgba(212,175,55,0.35);
+    filter:brightness(1.05);
 }
 
-.btn-game span {
-    display:block;
-    font-size:14px;
-    font-weight:normal;
-    margin-top:6px;
-    color:#3a2e00;
-}
-
-/* BOTÃO SOLICITAR CONTROLE — mesmo estilo visual */
+/* BOTÃO SOLICITAR CONTROLE */
 .btn-control {
     padding:18px;
     border-radius:40px;
@@ -58,31 +75,43 @@
     border:1px solid #2a2a2a;
     background:#0b0b0b;
     color:#fff;
-    transition:.2s;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        border-color .18s ease;
+
+    animation: fadeUp .5s ease both;
+    animation-delay: .12s;
 }
 
 .btn-control.clicked {
     border-color:#d4af37;
     box-shadow:
-        0 0 12px rgba(212,175,55,0.7),
-        0 0 24px rgba(212,175,55,0.35);
+        0 0 10px rgba(212,175,55,0.7),
+        0 0 22px rgba(212,175,55,0.35);
     transform:scale(0.97);
 }
 
-/* TOAST DISCRETO */
+/* TOAST ELEGANTE */
 .toast {
     position:fixed;
-    bottom:28px;
+    bottom:26px;
     left:50%;
-    transform:translateX(-50%) translateY(20px);
-    background:#111;
-    border:1px solid rgba(212,175,55,.5);
-    padding:12px 16px;
-    border-radius:14px;
+    transform:translateX(-50%) translateY(12px);
+    background:rgba(20,20,20,0.92);
+    border:1px solid rgba(212,175,55,.45);
+    padding:12px 18px;
+    border-radius:16px;
     font-size:13px;
+    letter-spacing:.2px;
+
     opacity:0;
     pointer-events:none;
-    transition:.35s;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
 }
 
 .toast.show {
@@ -114,7 +143,6 @@
       🕹️ Nintendo 64
     </div>
 
-    <!-- NOVO BOTÃO SEM ALTERAR LAYOUT -->
     <div class="btn-control" onclick="solicitarControle(this)">
       🎮 Solicitar controle ao motorista
     </div>
@@ -146,11 +174,11 @@ function abrirN64(){
 
 function solicitarControle(btn){
 
-    /* brilho suave */
+    /* glow suave */
     btn.classList.add("clicked");
-    setTimeout(()=>btn.classList.remove("clicked"), 600);
+    setTimeout(()=>btn.classList.remove("clicked"), 500);
 
-    /* envia para Telegram */
+    /* envia telegram */
     fetch(scriptURL,{
         method:"POST",
         body:new URLSearchParams({
@@ -158,10 +186,10 @@ function solicitarControle(btn){
         })
     });
 
-    /* aviso visual */
+    /* toast elegante */
     const toast = document.getElementById("toast");
     toast.classList.add("show");
-    setTimeout(()=>toast.classList.remove("show"), 2200);
+    setTimeout(()=>toast.classList.remove("show"), 2000);
 }
 </script>
 
