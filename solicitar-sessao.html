@@ -79,6 +79,8 @@ button:hover{
         </select>
 
         <button type="submit">Enviar solicitação</button>
+        <button type="button" onclick="voltarPagina()">Voltar</button>
+
     </form>
 
     <div id="msg">Solicitação enviada com sucesso.</div>
@@ -102,6 +104,10 @@ document.getElementById("form").addEventListener("submit", e => {
         alert("Erro ao enviar. Tente novamente.");
     });
 });
+    function voltarPagina(){
+    window.history.back();
+}
+
 </script>
 
 </body>
