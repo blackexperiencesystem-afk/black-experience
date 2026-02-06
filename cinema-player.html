@@ -10,57 +10,43 @@
 <style>
 /* Ajustes específicos da página Cinema */
 
-/* Container principal */
 .container {
     padding: 50px 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-/* Título maior e centralizado */
+/* Título maior */
 h1 {
     font-size: 46px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
-/* Subtítulo com mais impacto */
+/* Subtítulo */
 .subtitle {
     font-size: 20px;
     color: #bfa75a;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     max-width: 600px;
-    line-height: 1.4;
 }
 
-/* Menu com botões maiores */
+/* Menu */
 .menu {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    margin-bottom: 50px;
+    gap: 34px;
 }
 
-/* Botões de seleção principais */
+/* Botões grandes */
 .btn-cinema {
-    padding: 30px;
+    padding: 32px;
     border-radius: 80px;
     font-size: 22px;
     font-weight: 600;
     cursor: pointer;
     border: 1px solid rgba(212,175,55,0.45);
-    background: radial-gradient(
-        circle at top,
-        #f1d27a 0%,
-        #d4af37 40%,
-        #b89b30 100%
-    );
+    background: radial-gradient(circle at top,#f1d27a 0%,#d4af37 40%,#b89b30 100%);
     color: #000;
     transition: transform .15s ease, box-shadow .15s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .btn-cinema:active {
@@ -70,25 +56,10 @@ h1 {
 .btn-cinema span {
     display: block;
     font-size: 16px;
-    font-weight: normal;
     margin-top: 8px;
     color: #3a2e00;
 }
-
-/* Voltar discreto padrão */
-.back {
-    margin-top: 60px;
-    font-size: 14px;
-    color: #777;
-    cursor: pointer;
-    transition: .2s;
-}
-
-.back:hover {
-    color: #fff;
-}
 </style>
-
 </head>
 
 <body>
@@ -104,14 +75,16 @@ h1 {
 
   <div class="menu">
 
-    <div class="btn-cinema" onclick="abrirTrailer()">
-      🎬 Assistir Trailer
-      <span>Veja os melhores trailers em alta definição</span>
+    <!-- DISNEY+ -->
+    <div class="btn-cinema" onclick="abrirDisney()">
+      🏰 Disney+
+      <span>Filmes, animações e universos inesquecíveis</span>
     </div>
 
-    <div class="btn-cinema" onclick="abrirFilmes()">
-      🍿 Assistir Filmes
-      <span>Títulos selecionados pra você</span>
+    <!-- HBO MAX -->
+    <div class="btn-cinema" onclick="abrirHBO()">
+      🎥 HBO Max
+      <span>Séries premiadas e grandes produções</span>
     </div>
 
   </div>
@@ -123,15 +96,15 @@ h1 {
 <script src="assets/ui.js"></script>
 
 <script>
-function abrirTrailer(){
+function abrirDisney(){
     if (typeof fully !== "undefined") {
-        fully.startApplication("com.mxtech.videoplayer.pro");
+        fully.startApplication("com.disney.disneyplus");
     }
 }
 
-function abrirFilmes(){
+function abrirHBO(){
     if (typeof fully !== "undefined") {
-        fully.startApplication("com.mxtech.videoplayer.pro");
+        fully.startApplication("com.hbo.hbonow");
     }
 }
 </script>
