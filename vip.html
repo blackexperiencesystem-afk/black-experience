@@ -8,93 +8,68 @@
 <link rel="stylesheet" href="assets/style.css">
 
 <style>
-/* CENTRALIZAÇÃO REAL DA TELA */
-body{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#000;
-    color:#fff;
-}
-
-/* WRAPPER MAIS EQUILIBRADO */
-.wrapper{
-    width:100%;
-    max-width:420px;          /* mais estreito = sensação premium */
-    padding:48px 20px 40px;
+.container{
+    padding:48px 22px 80px;
     text-align:center;
 }
 
-/* TÍTULO */
-h1{
-    font-size:40px;
-    margin-bottom:8px;
-}
-
-/* SUBTÍTULO */
-.sub{
-    opacity:.6;
-    margin-bottom:36px;
-    font-size:15px;
-}
-
-/* GRID MAIS COMPACTO */
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-    margin-bottom:24px;
-}
-
-/* BOTÕES DO GRID */
-.button{
-    padding:22px 16px;
-    border-radius:18px;
-    text-decoration:none;
-    color:#000;
-    font-size:16px;
-    font-weight:600;
-    background:linear-gradient(135deg,#d4af37,#f1d27a);
-    box-shadow:0 6px 18px rgba(212,175,55,0.25);
-    transition:.18s ease;
-}
-
-.button:active{
-    transform:scale(0.96);
-}
-
-/* BOTÃO EXECUTIVO PRINCIPAL */
-.executivo{
+/* BOTÕES GRANDES (estilo modo executivo) */
+.big-btn{
     display:block;
-    margin:4px auto 14px;
-    padding:22px;
     width:100%;
-    border-radius:18px;
-    font-size:17px;
+    margin:16px 0;
+    padding:22px;
+    border-radius:28px;
+    text-decoration:none;
+    font-size:20px;
     font-weight:600;
     color:#000;
-    background:linear-gradient(135deg,#d4af37,#f1d27a,#d4af37);
-    box-shadow:0 8px 22px rgba(212,175,55,0.25);
+
+    background:linear-gradient(
+        135deg,
+        #d4af37 0%,
+        #f1d27a 50%,
+        #d4af37 100%
+    );
+
+    box-shadow:
+        0 10px 30px rgba(212,175,55,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.35);
+
+    transition:transform .15s ease, box-shadow .15s ease;
 }
 
-.executivo:active{
+.big-btn:active{
     transform:scale(0.97);
 }
 
-/* BOTÃO FOTOGRAFIA */
-.secondary{
+/* BOTÃO FOTOGRAFIA (outline dourado) */
+.photo-btn{
     display:block;
-    margin:0 auto 22px;
-    padding:18px;
-    border-radius:18px;
+    width:100%;
+    margin-top:26px;
+    padding:20px;
+    border-radius:28px;
     text-decoration:none;
+    font-size:18px;
+    font-weight:600;
+
     color:#d4af37;
-    border:1px solid rgba(212,175,55,0.5);
+    border:1px solid rgba(212,175,55,0.6);
+    background:transparent;
+
+    transition:all .2s ease;
+}
+
+.photo-btn:active{
+    transform:scale(0.97);
+    background:rgba(212,175,55,0.08);
 }
 
 /* ENCERRAR */
 .close{
     display:inline-block;
+    margin-top:34px;
     font-size:13px;
     opacity:.4;
     text-decoration:none;
@@ -105,28 +80,35 @@ h1{
 
 <body>
 
-<div class="wrapper">
+<div class="container">
 
 <h1>Passe Premium</h1>
-<div class="sub">Experiência exclusiva liberada nesta viagem</div>
 
-<div class="grid">
-    <a class="button" href="conforto-player.html">❄️ Conforto</a>
-    <a class="button" href="musica-player.html">🎧 Música</a>
-    <a class="button" href="cinema-player.html">🎬 Cinema</a>
-    <a class="button" href="jogos-player.html">🎮 Jogos</a>
+<div class="subtitle">
+Experiência exclusiva liberada nesta viagem
 </div>
 
-<div class="executivo" onclick="window.location.href='executivo-player.html'">
-    💼 Modo Executivo
-</div>
-
-<a class="secondary" href="fotografia.html">
-    📸 Fotografia Executiva no carro
+<!-- BOTÕES PRINCIPAIS -->
+<a class="big-btn" href="cinema-player.html">
+🎬 Cinema
 </a>
 
+<a class="big-btn" href="jogos-player.html">
+🎮 Jogos
+</a>
+
+<a class="big-btn" href="executivo-player.html">
+💼 Modo Executivo
+</a>
+
+<!-- FOTOGRAFIA POR ÚLTIMO -->
+<a class="photo-btn" href="fotografia.html">
+📸 Fotografia Executiva no carro
+</a>
+
+<!-- ENCERRAR -->
 <a class="close" href="index.html">
-    Encerrar modo premium
+Encerrar modo premium
 </a>
 
 </div>
