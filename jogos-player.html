@@ -1,113 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jogos Premium</title>
+  <meta charset="UTF-8">
+  <title>Black Experience System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-<style>
-body{
-    margin:0;
-    background:#000;
-    color:#fff;
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:100vh;
-}
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #111 0%, #000 60%);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-.container{
-    width:90%;
-    max-width:420px;
-    text-align:center;
-}
+    h1 {
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      font-size: 28px;
+      text-align: center;
+    }
 
-h1{
-    font-size:30px;
-    margin-bottom:10px;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      width: 90%;
+      max-width: 1200px;
+    }
 
-p{
-    opacity:.7;
-    margin-bottom:28px;
-    line-height:1.4;
-}
+    .game {
+      background: linear-gradient(180deg, #1a1a1a, #0a0a0a);
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 18px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
 
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-bottom:28px;
-}
+    .game:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
 
-.card{
-    border:1px solid rgba(255,255,255,0.12);
-    border-radius:18px;
-    padding:16px 10px;
-    font-size:14px;
-    opacity:.9;
-}
+    .ps2 {
+      border: 2px solid #2b6cff;
+    }
 
-.card span{
-    display:block;
-    font-size:20px;
-    margin-bottom:6px;
-}
+    .n64 {
+      border: 2px solid #2bff9e;
+    }
 
-.btn{
-    width:100%;
-    padding:16px;
-    border:none;
-    border-radius:30px;
-    font-size:16px;
-    font-weight:600;
-    background:linear-gradient(135deg,#e5c15a,#cfa73a);
-    color:#000;
-    margin-bottom:16px;
-}
-
-.voltar{
-    font-size:13px;
-    opacity:.5;
-    text-decoration:none;
-    color:#fff;
-}
-</style>
+    .footer {
+      margin-top: 25px;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <h1>🎮 BLACK EXPERIENCE SYSTEM</h1>
 
-<h1>Jogos Premium</h1>
+  <div class="grid">
 
-<p>
-Relaxe durante a viagem com clássicos do videogame.
-Escolha seu favorito e aproveite a experiência no tablet.
-</p>
+    <!-- PLAYSTATION 2 -->
+    <div class="game ps2" onclick="openPS2()">FIFA Street 2</div>
+    <div class="game ps2" onclick="openPS2()">God of War</div>
+    <div class="game ps2" onclick="openPS2()">GTA San Andreas</div>
+    <div class="game ps2" onclick="openPS2()">Guitar Hero III</div>
+    <div class="game ps2" onclick="openPS2()">Need for Speed</div>
+    <div class="game ps2" onclick="openPS2()">Winning Eleven 9</div>
 
-<div class="grid">
-    <div class="card"><span>🚗</span>GTA San Andreas</div>
-    <div class="card"><span>🏁</span>Mario Kart</div>
-    <div class="card"><span>⚽</span>Futebol Retrô</div>
-    <div class="card"><span>🎮</span>N64 & PlayStation</div>
-</div>
+    <!-- NINTENDO 64 -->
+    <div class="game n64" onclick="openN64()">Super Mario 64</div>
+    <div class="game n64" onclick="openN64()">Mario Kart 64</div>
 
-<button class="btn" onclick="iniciarJogo()">
-Iniciar no tablet
-</button>
+  </div>
 
-<a class="voltar" href="vip.html">Voltar ao menu premium</a>
+  <div class="footer">
+    Sistema dedicado • Toque para jogar
+  </div>
 
-</div>
+  <script>
+    function openPS2() {
+      // AetherSX2
+      window.location.href = "intent://#Intent;package=xyz.aethersx2.android;end";
+    }
 
-
-<script>
-function iniciarJogo(){
-    alert("O motorista irá iniciar o jogo no tablet para você. Aproveite a experiência 🎮");
-}
-</script>
+    function openN64() {
+      // Lemuroid
+      window.location.href = "intent://#Intent;package=com.swordfish.lemuroid;end";
+    }
+  </script>
 
 </body>
 </html>
