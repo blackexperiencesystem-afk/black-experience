@@ -6,26 +6,30 @@
 <title>Solicitar Sessão</title>
 
 <style>
-    .back-container{
+.back-global{
   width:100%;
   display:flex;
   justify-content:center;
-  margin:40px 0 20px;
+  align-items:center;
+  margin:60px 0 30px;
 }
 
-.back-btn{
+.back-global button{
   background:none;
   border:none;
-  color:#777;
-  font-size:14px;
+  color:#666;
+  font-size:13px;
   letter-spacing:1px;
   text-transform:lowercase;
   cursor:pointer;
-  transition:0.2s;
+  transition:opacity .2s, color .2s;
 }
 
-.back-btn:hover{
+.back-global button:hover{
   color:#fff;
+  opacity:0.8;
+}
+
 }
 
 body{
@@ -130,8 +134,8 @@ document.getElementById("form").addEventListener("submit", e => {
  
 
 </script>
-<div class="back-container">
-  <button class="back-btn" onclick="goBack()">voltar</button>
+<div class="back-global">
+  <button onclick="goBack()">voltar</button>
 </div>
 
 <script>
@@ -139,10 +143,11 @@ function goBack() {
   if (window.history.length > 1) {
     window.history.back();
   } else {
-    window.location.href = "index.html"; // fallback seguro
+    window.location.href = "index.html";
   }
 }
 </script>
+
 
 </body>
 </html>
