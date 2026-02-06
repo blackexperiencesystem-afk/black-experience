@@ -128,5 +128,21 @@ Ir direto para pagamento
 <div class="footer">Black Experience</div>
 
 </div>
+  <script>
+/* Detecta de onde o cliente veio e salva na sessão */
+(function(){
+  const ref = document.referrer || "";
+
+  if(ref.includes("vip")){
+    sessionStorage.setItem("origemFoto","vip");
+  } else if(ref.includes("index")){
+    sessionStorage.setItem("origemFoto","index");
+  } else {
+    /* fallback padrão */
+    sessionStorage.setItem("origemFoto","index");
+  }
+})();
+</script>
+
 </body>
 </html>
