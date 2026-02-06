@@ -73,7 +73,7 @@ h1 {
     transition: transform .15s ease, box-shadow .15s ease;
 }
 
-/* HOVER */
+/* CLICK */
 .btn:active {
     transform: scale(0.97);
 }
@@ -86,13 +86,17 @@ h1 {
     color: #3a2e00;
 }
 
-/* VOLTAR */
-.voltar {
-    margin-top: 48px;
+/* BOTÃO VOLTAR PADRÃO */
+.back {
+    margin-top: 60px;
     font-size: 13px;
-    opacity: .4;
+    color: #777;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.back:hover {
     color: #fff;
-    text-decoration: none;
 }
 </style>
 </head>
@@ -122,7 +126,8 @@ h1 {
 
     </div>
 
-    <a href="index.html" class="voltar">Voltar ao menu</a>
+    <!-- BOTÃO VOLTAR PADRÃO DO SISTEMA -->
+    <div class="back" onclick="goBack()">← voltar</div>
 
 </div>
 
@@ -136,6 +141,15 @@ function abrirPS2(){
 function abrirN64(){
     if (typeof fully !== "undefined") {
         fully.startApplication("com.swordfish.lemuroid");
+    }
+}
+
+/* VOLTAR PADRÃO GLOBAL */
+function goBack(){
+    if (window.history.length > 1){
+        window.history.back();
+    } else {
+        window.location.href = "index.html";
     }
 }
 </script>
