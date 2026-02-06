@@ -3,183 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Black Experience System</title>
+<title>Jogos • Black Experience</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
 
 body{
-  background:#000;
-  color:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  height:100vh;
-  overflow:hidden;
+    margin:0;
+    background:#000;
+    color:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
 }
 
-/* BOOT */
-#boot{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:26px;
-  letter-spacing:2px;
-  z-index:999;
-  animation:fadeOut 1.2s ease forwards;
-  animation-delay:2s;
-}
-@keyframes fadeOut{
-  to{opacity:0;visibility:hidden}
+.container{
+    width:100%;
+    max-width:420px;
+    padding:32px 24px;
+    text-align:center;
 }
 
-/* MENU */
+.logo{
+    font-size:26px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:6px;
+}
+
+.subtitle{
+    font-size:14px;
+    opacity:.6;
+    margin-bottom:40px;
+}
+
 .menu{
-  display:flex;
-  height:100%;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
 }
 
-.sidebar{
-  width:80px;
-  background:#050505;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:30px;
-  border-right:1px solid rgba(255,255,255,.1);
+.btn{
+    width:100%;
+    padding:20px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.15);
+    background:#0e0e0e;
+    color:#fff;
+    font-size:16px;
+    font-weight:500;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    cursor:pointer;
 }
 
-.sidebar button{
-  background:none;
-  border:none;
-  color:#fff;
-  font-size:22px;
-  opacity:.4;
-}
-.sidebar button.active{opacity:1}
-
-.content{
-  flex:1;
-  padding:40px;
+.btn span{
+    font-size:22px;
 }
 
-.section{display:none}
-.section.active{display:block}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:20px;
+.btn:hover{
+    background:#151515;
 }
 
-.card{
-  height:200px;
-  border-radius:16px;
-  background:linear-gradient(180deg,#1a1a1a,#050505);
-  display:flex;
-  align-items:flex-end;
-  padding:14px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:.2s;
+/* VOLTAR */
+.voltar{
+    margin-top:28px;
+    font-size:13px;
+    opacity:.4;
+    color:#fff;
+    text-decoration:none;
+    display:inline-block;
 }
-.card:hover{transform:scale(1.05)}
-
-.ps2{border:2px solid #2b6cff}
-.n64{border:2px solid #2bff9e}
-.cinema{border:2px solid #d4af37}
-.servico{border:2px solid #aaa}
 </style>
 </head>
 
 <body>
 
-<!-- BOOT -->
-<div id="boot">BLACK EXPERIENCE</div>
+<div class="container">
 
-<div class="menu">
+    <div class="logo">🎮 Jogos</div>
+    <div class="subtitle">Escolha o console</div>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <button onclick="show('jogos')" class="active">🎮</button>
-    <button onclick="show('cinema')">🎬</button>
-    <button onclick="show('servicos')">🚘</button>
-  </div>
+    <div class="menu">
+        <div class="btn" onclick="abrirPS2()">
+            <span>🕹️</span> PlayStation 2
+        </div>
 
-  <!-- CONTENT -->
-  <div class="content">
-
-    <!-- JOGOS -->
-    <div id="jogos" class="section active">
-      <div class="grid">
-        <div class="card ps2" onclick="ps2('GTA San Andreas')">GTA San Andreas</div>
-        <div class="card ps2" onclick="ps2('God of War')">God of War</div>
-        <div class="card ps2" onclick="ps2('FIFA Street 2')">FIFA Street 2</div>
-        <div class="card ps2" onclick="ps2('Guitar Hero III')">Guitar Hero III</div>
-        <div class="card ps2" onclick="ps2('Need for Speed')">Need for Speed</div>
-        <div class="card ps2" onclick="ps2('Winning Eleven 9')">Winning Eleven 9</div>
-
-        <div class="card n64" onclick="n64('Super Mario 64')">Super Mario 64</div>
-        <div class="card n64" onclick="n64('Mario Kart 64')">Mario Kart 64</div>
-      </div>
+        <div class="btn" onclick="abrirN64()">
+            <span>🎮</span> Nintendo 64
+        </div>
     </div>
 
-    <!-- CINEMA -->
-    <div id="cinema" class="section">
-      <div class="grid">
-        <div class="card cinema" onclick="openApp('com.disney.disneyplus','Disney+')">Disney+</div>
-        <div class="card cinema" onclick="openApp('com.wbd.stream','HBO Max')">HBO Max</div>
-        <div class="card cinema" onclick="openApp('com.netflix.mediaclient','Netflix')">Netflix</div>
-      </div>
-    </div>
+    <a href="index.html" class="voltar">Voltar</a>
 
-    <!-- SERVIÇOS -->
-    <div id="servicos" class="section">
-      <div class="grid">
-        <div class="card servico">Wi-Fi</div>
-        <div class="card servico">Carregador</div>
-        <div class="card servico">Água</div>
-      </div>
-    </div>
-
-  </div>
 </div>
 
 <script>
-/* NAVEGAÇÃO */
-function show(id){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.sidebar button').forEach(b=>b.classList.remove('active'));
-  event.target.classList.add('active');
+function abrirPS2(){
+    if (typeof fully !== "undefined") {
+        fully.startApplication("xyz.aethersx2.android");
+    }
 }
 
-/* LOG */
-function log(item){
-  let logs = JSON.parse(localStorage.getItem('logs')||'{}');
-  logs[item]=(logs[item]||0)+1;
-  localStorage.setItem('logs',JSON.stringify(logs));
-}
-
-/* ABERTURA DE APPS */
-function openApp(pkg,name){
-  log(name);
-  if(typeof fully!=="undefined"){
-    fully.startApplication(pkg);
-  }
-}
-
-/* JOGOS */
-function ps2(nome){
-  log(nome);
-  fully.startApplication("xyz.aethersx2.android");
-}
-
-function n64(nome){
-  log(nome);
-  fully.startApplication("com.swordfish.lemuroid");
+function abrirN64(){
+    if (typeof fully !== "undefined") {
+        fully.startApplication("com.swordfish.lemuroid");
+    }
 }
 </script>
 
