@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solicitar sessão fotográfica</title>
+<title>Solicitar Sessão Fotográfica</title>
 
 <style>
 body{
@@ -17,82 +17,107 @@ body{
     height:100vh;
 }
 
-.container{
-    width:90%;
-    max-width:420px;
+.wrapper{
+    max-width:520px;
+    margin:0 auto;
+    padding:40px 20px 80px;
     text-align:center;
 }
 
 h1{
-    font-size:28px;
-    margin-bottom:10px;
+    font-size:34px;
+    margin-bottom:6px;
 }
 
-p{
-    opacity:.6;
-    margin-bottom:30px;
+.sub{
+    opacity:.55;
+    font-size:15px;
+    margin-bottom:32px;
+}
+
+.grupo{
+    margin-bottom:22px;
+    text-align:left;
 }
 
 input, select, textarea{
     width:100%;
-    padding:14px;
+    padding:15px;
     margin-bottom:12px;
-    border-radius:12px;
+    border-radius:14px;
     border:none;
-    background:#111;
+    background:#0b0b0b;
     color:#fff;
     font-size:15px;
 }
 
-button{
+textarea{
+    resize:none;
+}
+
+/* BOTÃO DOURADO */
+.confirmar{
+    margin-top:18px;
     width:100%;
-    padding:16px;
+    padding:18px;
     border:none;
     border-radius:40px;
-    font-size:16px;
-    font-weight:bold;
+    font-size:18px;
+    font-weight:600;
     background:linear-gradient(135deg,#d4af37,#f1d27a);
     color:#000;
     cursor:pointer;
 }
 
-.success{
-    margin-top:20px;
-    color:#d4af37;
+/* FEEDBACK */
+.ok{
     display:none;
+    margin-top:18px;
+    font-size:15px;
+    opacity:.85;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrapper">
 
-<h1>Solicitar sessão fotográfica</h1>
-<p>Preencha rapidamente. O motorista será avisado na hora.</p>
+<h1>Sessão Fotográfica</h1>
+<div class="sub">Solicitação rápida e discreta durante a viagem</div>
 
 <form id="form">
 
+<div class="grupo">
 <input type="text" name="entry.1983516271" placeholder="Seu nome" required>
+</div>
 
+<div class="grupo">
 <input type="tel" name="entry.768217560" placeholder="Telefone para envio das fotos" required>
+</div>
 
+<div class="grupo">
 <select name="entry.86139815" required>
-<option value="">Escolha o estilo</option>
-<option>Executivo</option>
-<option>LinkedIn</option>
-<option>Criativo</option>
-<option>Casual</option>
+    <option value="">Estilo da sessão</option>
+    <option>Executivo</option>
+    <option>LinkedIn</option>
+    <option>Criativo</option>
+    <option>Casual</option>
 </select>
+</div>
 
-<textarea name="entry.471992005" placeholder="Observações (opcional)"></textarea>
+<div class="grupo">
+<textarea name="entry.471992005" placeholder="Observações (opcional)" rows="3"></textarea>
+</div>
 
-<button type="submit">Confirmar solicitação</button>
+<button class="confirmar" type="submit">
+📸 Confirmar solicitação
+</button>
 
 </form>
 
-<div class="success" id="msg">
-Pedido enviado ao motorista.  
+<div class="ok" id="msg">
+Solicitação enviada ao motorista ✔<br>
 Prepare-se para sua sessão ✨
 </div>
 
@@ -101,15 +126,49 @@ Prepare-se para sua sessão ✨
 <script>
 const form = document.getElementById("form");
 
+const TELEGRAM_TOKEN = "SEU_BOT_TOKEN_AQUI";
+const TELEGRAM_CHAT_ID = "SEU_CHAT_ID_AQUI";
+
 form.addEventListener("submit", function(e){
     e.preventDefault();
 
-    fetch("https://docs.google.com/forms/d/e/1bHpuJk2aCOG52Jema45kbe1EL6ButR7yt_nr82RoV1E/formResponse", {
-        method: "POST",
-        mode: "no-cors",
-        body: new FormData(form)
+    const data = new FormData(form);
+
+    /* 1️⃣ ENVIA PARA GOOGLE FORMS (PLANILHA) */
+    fetch(
+        "https://docs.google.com/forms/d/e/1bHpuJk2aCOG52Jema45kbe1EL6ButR7yt_nr82RoV1E/formResponse",
+        {
+            method:"POST",
+            mode:"no-cors",
+            body:data
+        }
+    );
+
+    /* 2️⃣ ENVIA PARA TELEGRAM */
+    const nome = data.get("entry.1983516271");
+    const telefone = data.get("entry.768217560");
+    const estilo = data.get("entry.86139815");
+    const obs = data.get("entry.471992005") || "—";
+
+    const mensagem =
+`📸 *Nova sessão solicitada*
+
+👤 Nome: ${nome}
+📞 Telefone: ${telefone}
+🎯 Estilo: ${estilo}
+📝 Obs: ${obs}`;
+
+    fetch(`https://api.telegram.org/bot${8557027295:AAEjz-phGg2qZs1rqHTkwJrith24GhMqxpo}/sendMessage`,{
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({
+            chat_id: 6570540085,
+            text: mensagem,
+            parse_mode: "Markdown"
+        })
     });
 
+    /* 3️⃣ FEEDBACK VISUAL */
     form.reset();
     document.getElementById("msg").style.display = "block";
 });
