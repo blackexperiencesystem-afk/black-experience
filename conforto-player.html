@@ -5,185 +5,106 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conforto Premium</title>
 
+<link rel="stylesheet" href="assets/style.css">
+
 <style>
-body{
-    margin:0;
-    background:#000;
-    color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+.container{ padding:48px 22px 80px; }
+.section{ margin-bottom:28px; text-align:left; }
+
+.btn{
+  width:100%;
+  padding:18px;
+  margin:8px 0;
+  border-radius:16px;
+  border:1px solid #2a2a2a;
+  background:#0b0b0b;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
 }
 
-.wrapper{
-    max-width:520px;
-    margin:0 auto;
-    padding:40px 20px 80px;
-    text-align:center;
+.btn.selected{
+  border-color:#d4af37;
+  background:#1a1405;
 }
 
-h1{
-    font-size:34px;
-    margin-bottom:6px;
+.confirm{
+  margin-top:20px;
+  width:100%;
+  padding:18px;
+  border:none;
+  border-radius:40px;
+  font-size:18px;
+  font-weight:600;
+  background:linear-gradient(135deg,#d4af37,#f1d27a);
+  color:#000;
+  cursor:pointer;
 }
 
-.sub{
-    opacity:.55;
-    font-size:15px;
-    margin-bottom:32px;
-}
-
-.grupo{
-    margin-bottom:30px;
-    text-align:left;
-}
-
-.titulo{
-    font-weight:600;
-    margin-bottom:4px;
-}
-
-.desc{
-    font-size:13px;
-    opacity:.45;
-    margin-bottom:12px;
-}
-
-.opcao{
-    display:block;
-    width:100%;
-    margin:8px 0;
-    padding:15px;
-    border-radius:14px;
-    border:1px solid #2a2a2a;
-    background:#0b0b0b;
-    color:#fff;
-    font-size:15px;
-    cursor:pointer;
-}
-
-.opcao.selecionado{
-    border-color:#d4af37;
-    background:#1a1405;
-}
-
-/* BOTÃO CONFIRMAR */
-.confirmar{
-    margin-top:18px;
-    width:100%;
-    padding:18px;
-    border:none;
-    border-radius:40px;
-    font-size:18px;
-    font-weight:600;
-    background:linear-gradient(135deg,#d4af37,#f1d27a);
-    color:#000;
-    cursor:pointer;
-}
-
-/* MENSAGEM OK */
 .ok{
-    display:none;
-    margin-top:18px;
-    font-size:15px;
-    opacity:.85;
-}
-
-/* BOTÃO CONTINUAR PREMIUM */
-.gold-button{
-    display:none;
-    margin-top:22px;
-    width:100%;
-    padding:20px;
-    border-radius:40px;
-    font-size:18px;
-    font-weight:700;
-    text-decoration:none;
-    text-align:center;
-
-    background:linear-gradient(
-        135deg,
-        #d4af37 0%,
-        #f1d27a 50%,
-        #d4af37 100%
-    );
-
-    color:#000;
-    box-shadow:
-        0 10px 30px rgba(212,175,55,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.35);
-}
-
-.gold-button:active{
-    transform:scale(0.97);
+  display:none;
+  margin-top:16px;
+  font-size:14px;
+  opacity:.8;
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="container">
 
-<h1>Conforto Premium</h1>
-<div class="sub">Personalize o ambiente da sua viagem</div>
+<h1>Conforto</h1>
+<div class="subtitle">Ajuste o ambiente da cabine</div>
 
-<!-- CLIMATIZAÇÃO -->
-<div class="grupo">
-    <div class="titulo">Climatização</div>
-    <div class="desc">Escolha apenas uma opção de temperatura.</div>
-
-    <button class="opcao" onclick="selectSingle(this,'clima','Mais frio')">❄️ Mais frio</button>
-    <button class="opcao" onclick="selectSingle(this,'clima','Padrão')">🌡️ Padrão</button>
-    <button class="opcao" onclick="selectSingle(this,'clima','Mais quente')">🔥 Mais quente</button>
-    <button class="opcao" onclick="selectSingle(this,'clima','Ar desligado')">🚫 Ar desligado</button>
+<!-- CLIMA -->
+<div class="section">
+<button class="btn" onclick="select(this,'clima','Mais frio')">❄️ Mais frio</button>
+<button class="btn" onclick="select(this,'clima','Padrão')">🌡️ Padrão</button>
+<button class="btn" onclick="select(this,'clima','Mais quente')">🔥 Mais quente</button>
 </div>
 
-<!-- AROMATIZAÇÃO -->
-<div class="grupo">
-    <div class="titulo">Aromatização</div>
-    <div class="desc">Controle o difusor aromático do ambiente.</div>
-
-    <button class="opcao" onclick="selectSingle(this,'aroma','Ligado')">🌿 Difusor ligado</button>
-    <button class="opcao" onclick="selectSingle(this,'aroma','Desligado')">⛔ Difusor desligado</button>
+<!-- AROMA -->
+<div class="section">
+<button class="btn" onclick="select(this,'aroma','Ligado')">🌿 Aroma ligado</button>
+<button class="btn" onclick="select(this,'aroma','Desligado')">⛔ Aroma desligado</button>
 </div>
 
-<button class="confirmar" onclick="enviar()">Confirmar ajustes</button>
+<button class="confirm" onclick="enviar()">Confirmar</button>
 
-<div class="ok" id="ok">Preferências enviadas ao motorista ✔</div>
+<div class="ok" id="ok">Preferências enviadas ✔</div>
 
-<a href="vip.html" class="gold-button" id="premiumBtn">
-    ⭐ Voltar para Área VIP
-</a>
+<div class="back" onclick="goBack()">← voltar</div>
 
 </div>
+
+<script src="assets/ui.js"></script>
 
 <script>
+const scriptURL = "COLE_AQUI_SUA_URL_DO_WEBAPP";
+
 let clima="", aroma="";
 
-function selectSingle(btn, tipo, valor){
-    let grupo = btn.parentElement.querySelectorAll(".opcao");
-    grupo.forEach(b=>b.classList.remove("selecionado"));
-    btn.classList.add("selecionado");
+function select(btn,tipo,valor){
+  btn.parentElement.querySelectorAll(".btn").forEach(b=>b.classList.remove("selected"));
+  btn.classList.add("selected");
 
-    if(tipo==="clima") clima = valor;
-    if(tipo==="aroma") aroma = valor;
+  if(tipo==="clima") clima = valor;
+  if(tipo==="aroma") aroma = valor;
 }
 
 function enviar(){
+  if(!clima || !aroma){
+    alert("Selecione climatização e aromatização.");
+    return;
+  }
 
-    if(!clima){ alert("Selecione a climatização."); return; }
-    if(!aroma){ alert("Selecione a aromatização."); return; }
+  fetch(scriptURL,{
+    method:"POST",
+    body:new URLSearchParams({ clima, aroma })
+  });
 
-    const scriptURL = "COLE_AQUI_SUA_URL_DO_WEBAPP";
-
-    fetch(scriptURL, {
-        method:"POST",
-        body:new URLSearchParams({
-            clima: clima,
-            aroma: aroma
-        })
-    });
-
-    document.getElementById("ok").style.display="block";
-    document.getElementById("premiumBtn").style.display="block";
+  document.getElementById("ok").style.display="block";
 }
 </script>
 
