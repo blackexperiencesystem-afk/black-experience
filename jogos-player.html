@@ -7,112 +7,35 @@
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-  background:#000;
-  color:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+    margin:0;
+    background:#000;
+    color:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
 }
 
 .container{
-  width:100%;
-  max-width:480px;
-  padding:20px;
+    width:100%;
+    max-width:420px;
+    padding:32px 24px;
+    text-align:center;
 }
 
-h1{
-  font-size:36px;
-  margin-bottom:12px;
+.logo{
+    font-size:26px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:6px;
 }
 
-p{
-  opacity:.6;
-  margin-bottom:40px;
-  font-size:15px;
-}
-
-.botao{
-  display:block;
-  width:100%;
-  padding:22px;
-  margin-bottom:20px;
-  border-radius:50px;
-  font-size:18px;
-  font-weight:bold;
-  cursor:pointer;
-  text-decoration:none;
-  transition:transform .15s ease, box-shadow .15s ease;
-}
-
-/* PLAYSTATION 2 */
-.ps2{
-  background:linear-gradient(135deg,#1f6bff,#4fa3ff);
-  color:#fff;
-}
-
-/* NINTENDO 64 */
-.n64{
-  background:linear-gradient(135deg,#2bff9e,#6bffcb);
-  color:#000;
-}
-
-.botao:hover{
-  transform:scale(1.04);
-  box-shadow:0 12px 30px rgba(0,0,0,.6);
-}
-
-.voltar{
-  display:inline-block;
-  margin-top:20px;
-  font-size:13px;
-  opacity:.4;
-  color:#fff;
-  text-decoration:none;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <h1>🎮 Jogos</h1>
-  <p>Escolha o console e comece a jogar</p>
-
-  <div class="botao ps2" onclick="abrirPS2()">
-    PlayStation 2
-  </div>
-
-  <div class="botao n64" onclick="abrirN64()">
-    Nintendo 64
-  </div>
-
-  <a class="voltar" href="vip.html">Voltar</a>
-
-</div>
-
-<script>
-function abrirPS2(){
-  if (typeof fully !== "undefined") {
-    fully.startApplication("xyz.aethersx2.android");
-  }
-}
-
-function abrirN64(){
-  if (typeof fully !== "undefined") {
-    fully.startApplication("com.swordfish.lemuroid");
-  }
-}
-</script>
-
-</body>
-</html>
+.subtitle{
+    font-size:14px;
+    opacity:.6;
+    margin-bottom:40px
