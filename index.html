@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Black Experience</title>
+<title>Jogos • Black Experience</title>
 
 <style>
 *{
@@ -44,12 +44,12 @@ body{
 .menu{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:16px;
 }
 
 .btn{
     width:100%;
-    padding:18px;
+    padding:20px;
     border-radius:18px;
     border:1px solid rgba(255,255,255,0.15);
     background:#0e0e0e;
@@ -61,28 +61,24 @@ body{
     align-items:center;
     justify-content:center;
     gap:10px;
+    cursor:pointer;
 }
 
 .btn span{
-    font-size:20px;
+    font-size:22px;
 }
 
 .btn:hover{
     background:#151515;
 }
 
-.btn-premium{
-    margin-top:18px;
-    background:linear-gradient(135deg,#d4af37,#f1d27a);
-    color:#000;
-    border:none;
-    font-weight:600;
-}
-
-.footer{
+.voltar{
     margin-top:28px;
-    font-size:11px;
+    font-size:13px;
     opacity:.4;
+    color:#fff;
+    text-decoration:none;
+    display:inline-block;
 }
 </style>
 </head>
@@ -91,40 +87,36 @@ body{
 
 <div class="container">
 
-    <div class="logo">Black Experience</div>
-    <div class="subtitle">Sua viagem em outro nível</div>
+    <div class="logo">🎮 Jogos</div>
+    <div class="subtitle">Escolha o console</div>
 
     <div class="menu">
-        <a href="cinema.html" class="btn">
-            <span>🎬</span> Cinema
-        </a>
+        <div class="btn" onclick="abrirPS2()">
+            <span>🕹️</span> PlayStation 2
+        </div>
 
-        <a href="jogos.html" class="btn">
-            <span>🎮</span> Jogos
-        </a>
-
-        <a href="musica.html" class="btn">
-            <span>🎵</span> Música
-        </a>
-
-        <a href="conforto.html" class="btn">
-            <span>❄️</span> Conforto
-        </a>
-
-        <a href="fotografia.html" class="btn">
-            <span>📸</span> Fotografia Executiva
-        </a>
-
-        <a href="vip.html" class="btn btn-premium">
-            Ativar Passe Premium
-        </a>
+        <div class="btn" onclick="abrirN64()">
+            <span>🎮</span> Nintendo 64
+        </div>
     </div>
 
-    <div class="footer">
-        Experiência exclusiva para passageiros
-    </div>
+    <a href="index.html" class="voltar">Voltar</a>
 
 </div>
+
+<script>
+function abrirPS2(){
+    if (typeof fully !== "undefined") {
+        fully.startApplication("xyz.aethersx2.android");
+    }
+}
+
+function abrirN64(){
+    if (typeof fully !== "undefined") {
+        fully.startApplication("com.swordfish.lemuroid");
+    }
+}
+</script>
 
 </body>
 </html>
