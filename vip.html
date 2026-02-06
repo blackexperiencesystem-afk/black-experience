@@ -5,53 +5,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Passe Premium</title>
 
-<style>
-html, body{
-    height:100%;
-}
+<link rel="stylesheet" href="assets/style.css">
 
+<style>
+/* CENTRALIZAÇÃO REAL DA TELA */
 body{
-    margin:0;
-    background:#000;
-    color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
     display:flex;
     justify-content:center;
     align-items:center;
+    background:#000;
+    color:#fff;
 }
 
-/* WRAPPER CENTRAL REAL */
+/* WRAPPER MAIS EQUILIBRADO */
 .wrapper{
     width:100%;
-    max-width:520px;
-    padding:40px 20px;
+    max-width:420px;          /* mais estreito = sensação premium */
+    padding:48px 20px 40px;
     text-align:center;
 }
 
 /* TÍTULO */
 h1{
-    font-size:42px;
-    margin-bottom:6px;
+    font-size:40px;
+    margin-bottom:8px;
 }
 
 /* SUBTÍTULO */
 .sub{
-    opacity:.55;
-    margin-bottom:30px;
+    opacity:.6;
+    margin-bottom:36px;
     font-size:15px;
 }
 
-/* GRID */
+/* GRID MAIS COMPACTO */
 .grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:18px;
-    margin-bottom:28px;
+    gap:16px;
+    margin-bottom:24px;
 }
 
-/* BOTÕES GRID */
+/* BOTÕES DO GRID */
 .button{
-    padding:20px;
+    padding:22px 16px;
     border-radius:18px;
     text-decoration:none;
     color:#000;
@@ -59,43 +56,35 @@ h1{
     font-weight:600;
     background:linear-gradient(135deg,#d4af37,#f1d27a);
     box-shadow:0 6px 18px rgba(212,175,55,0.25);
-    transition:.2s;
+    transition:.18s ease;
 }
 
 .button:active{
-    transform:scale(0.97);
+    transform:scale(0.96);
 }
 
-/* BOTÃO EXECUTIVO */
+/* BOTÃO EXECUTIVO PRINCIPAL */
 .executivo{
     display:block;
-    margin:0 auto 14px;
-    padding:20px;
+    margin:4px auto 14px;
+    padding:22px;
     width:100%;
     border-radius:18px;
-    text-decoration:none;
     font-size:17px;
     font-weight:600;
     color:#000;
-
-    background:linear-gradient(
-        135deg,
-        #d4af37 0%,
-        #f1d27a 50%,
-        #d4af37 100%
-    );
-
-    box-shadow:0 6px 18px rgba(212,175,55,0.25);
+    background:linear-gradient(135deg,#d4af37,#f1d27a,#d4af37);
+    box-shadow:0 8px 22px rgba(212,175,55,0.25);
 }
 
 .executivo:active{
     transform:scale(0.97);
 }
 
-/* FOTOGRAFIA */
+/* BOTÃO FOTOGRAFIA */
 .secondary{
     display:block;
-    margin:0 auto 18px;
+    margin:0 auto 22px;
     padding:18px;
     border-radius:18px;
     text-decoration:none;
@@ -128,9 +117,9 @@ h1{
     <a class="button" href="jogos-player.html">🎮 Jogos</a>
 </div>
 
-<a class="executivo" href="executivo-player.html">
+<div class="executivo" onclick="window.location.href='executivo-player.html'">
     💼 Modo Executivo
-</a>
+</div>
 
 <a class="secondary" href="fotografia.html">
     📸 Fotografia Executiva no carro
