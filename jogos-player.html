@@ -95,27 +95,18 @@
 
  <script>
   function openPS2() {
-    window.open(
-      "intent://launch#Intent;" +
-      "action=android.intent.action.MAIN;" +
-      "category=android.intent.category.LAUNCHER;" +
-      "package=xyz.aethersx2.android;" +
-      "end",
-      "_self"
-    );
+    if (typeof fully !== "undefined") {
+      fully.openApp("xyz.aethersx2.android");
+    }
   }
 
   function openN64() {
-    window.open(
-      "intent://launch#Intent;" +
-      "action=android.intent.action.MAIN;" +
-      "category=android.intent.category.LAUNCHER;" +
-      "package=com.swordfish.lemuroid;" +
-      "end",
-      "_self"
-    );
+    if (typeof fully !== "undefined") {
+      fully.openApp("com.swordfish.lemuroid");
+    }
   }
 </script>
+
 
 
 </body>
