@@ -49,7 +49,6 @@ margin:0 auto 28px;
 to{transform:rotate(360deg);}
 }
 
-/* BOTÃO VOLTAR */
 .btn{
 display:inline-block;
 margin-top:12px;
@@ -83,7 +82,6 @@ Sua sessão fotográfica será iniciada em instantes.<br>
 Prepare-se para registrar este momento com elegância.
 </p>
 
-<!-- VOLTAR REAL -->
 <div class="btn" onclick="voltar()">Voltar</div>
 
 <div class="small">
@@ -94,11 +92,16 @@ Black Experience
 
 <script>
 function voltar(){
-    if(document.referrer){
-        history.back();
-    }else{
-        window.location.href = "vip.html";
-    }
+
+  const origem = sessionStorage.getItem("origemFoto");
+
+  if(origem === "vip"){
+    window.location.href = "vip.html";
+    return;
+  }
+
+  /* padrão = index */
+  window.location.href = "index.html";
 }
 </script>
 
