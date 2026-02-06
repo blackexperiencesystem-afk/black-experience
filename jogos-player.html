@@ -5,151 +5,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jogos • Black Experience</title>
 
+<link rel="stylesheet" href="assets/style.css">
+
 <style>
-html, body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    background: #000;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
+/* Ajustes específicos da página Jogos */
 .container {
-    max-width: 600px;
-    width: 90%;
     padding: 40px 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-/* TÍTULO */
-h1 {
-    font-size: 42px;
-    margin-bottom: 10px;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-/* FRASE DE IMPACTO */
-.subtitle {
-    font-size: 18px;
-    color: #bfa75a;
-    margin-bottom: 50px;
-    max-width: 500px;
-    line-height: 1.4;
-}
-
-/* BOTÕES */
 .menu {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 26px;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    margin-top:30px;
 }
 
-/* BOTÃO BASE */
-.btn {
-    padding: 26px;
-    border-radius: 60px;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    border: 1px solid rgba(212,175,55,0.45);
-    background: radial-gradient(
-        circle at top,
-        #f1d27a 0%,
-        #d4af37 40%,
-        #b89b30 100%
-    );
-    color: #000;
-    transition: transform .15s ease, box-shadow .15s ease;
+.btn-game {
+    padding:22px;
+    border-radius:60px;
+    font-size:20px;
+    font-weight:600;
+    cursor:pointer;
+    border:1px solid rgba(212,175,55,0.45);
+    background:radial-gradient(circle at top,#f1d27a 0%,#d4af37 40%,#b89b30 100%);
+    color:#000;
+    transition:transform .15s ease, box-shadow .15s ease;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-/* CLICK */
-.btn:active {
-    transform: scale(0.97);
+.btn-game:active {
+    transform:scale(0.97);
 }
 
-.btn span {
-    display: block;
-    font-size: 14px;
-    font-weight: normal;
-    margin-top: 6px;
-    color: #3a2e00;
-}
-
-/* BOTÃO VOLTAR PADRÃO */
-.back {
-    margin-top: 60px;
-    font-size: 13px;
-    color: #777;
-    cursor: pointer;
-    transition: .2s;
-}
-
-.back:hover {
-    color: #fff;
+.btn-game span {
+    display:block;
+    font-size:14px;
+    font-weight:normal;
+    margin-top:6px;
+    color:#3a2e00;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <h1>Jogos</h1>
+  <h1>Modo Jogos</h1>
 
-    <div class="subtitle">
-        Clássicos atemporais.<br>
-        Experiência de console em movimento.
+  <div class="subtitle">
+    Clássicos atemporais.<br>
+    Experiência de console em movimento.
+  </div>
+
+  <div class="menu">
+
+    <div class="btn-game" onclick="abrirPS2()">
+      🎮 PlayStation 2
+      <span>Os maiores clássicos da história dos videogames</span>
     </div>
 
-    <div class="menu">
-
-        <div class="btn" onclick="abrirPS2()">
-            🎮 PlayStation 2
-            <span>Os maiores clássicos da história dos videogames</span>
-        </div>
-
-        <div class="btn" onclick="abrirN64()">
-            🕹️ Nintendo 64
-            <span>Diversão icônica que atravessou gerações</span>
-        </div>
-
+    <div class="btn-game" onclick="abrirN64()">
+      🕹️ Nintendo 64
+      <span>Diversão icônica que atravessou gerações</span>
     </div>
 
-    <!-- BOTÃO VOLTAR PADRÃO DO SISTEMA -->
-    <div class="back" onclick="goBack()">← voltar</div>
+  </div>
+
+  <div class="back" onclick="goBack()">← voltar</div>
 
 </div>
 
+<script src="assets/ui.js"></script>
+
 <script>
 function abrirPS2(){
-    if (typeof fully !== "undefined") {
+    if(typeof fully !== "undefined"){
         fully.startApplication("xyz.aethersx2.android");
     }
 }
 
 function abrirN64(){
-    if (typeof fully !== "undefined") {
+    if(typeof fully !== "undefined"){
         fully.startApplication("com.swordfish.lemuroid");
-    }
-}
-
-/* VOLTAR PADRÃO GLOBAL */
-function goBack(){
-    if (window.history.length > 1){
-        window.history.back();
-    } else {
-        window.location.href = "index.html";
     }
 }
 </script>
