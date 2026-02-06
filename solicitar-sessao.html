@@ -3,130 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solicitar Sessão • Black Experience</title>
+<title>Solicitar Sessão</title>
 
 <link rel="stylesheet" href="assets/style.css">
 
 <style>
-/* Ajustes específicos da página */
-.page{
-  width:100%;
-  max-width:420px;
-  padding:40px 20px;
+.container{
+    padding:48px 22px 80px;
+    text-align:center;
 }
 
-h1{
-  text-align:center;
+.form{
+    margin-top:26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
 }
 
 input, select{
-  width:100%;
-  padding:14px;
-  margin-bottom:14px;
-  border-radius:10px;
-  border:1px solid #222;
-  background:#0a0a0a;
-  color:#fff;
-  font-size:15px;
+    width:100%;
+    padding:16px;
+    border-radius:14px;
+    border:1px solid #2a2a2a;
+    background:#0b0b0b;
+    color:#fff;
+    font-size:15px;
 }
 
-.btn-primary{
-  width:100%;
-  padding:15px;
-  border:none;
-  border-radius:10px;
-  background:#d4af37;
-  color:#000;
-  font-weight:600;
-  font-size:15px;
-  cursor:pointer;
-  margin-top:10px;
+button{
+    margin-top:12px;
+    padding:18px;
+    border:none;
+    border-radius:40px;
+    font-size:18px;
+    font-weight:600;
+    background:linear-gradient(135deg,#d4af37,#f1d27a);
+    color:#000;
+    cursor:pointer;
+}
+
+/* LOADING PREMIUM */
+#loading{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    font-size:16px;
+    letter-spacing:.4px;
+    opacity:.92;
 }
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<div class="container">
 
-  <h1>Solicitar Sessão</h1>
+<h1>Solicitar Sessão</h1>
 
-  <form id="form">
-    <input name="nome" placeholder="Seu nome" required>
-    <input name="email" type="email" placeholder="Seu email" required>
+<div class="subtitle">
+Preencha os dados para agendar sua experiência fotográfica.
+</div>
 
-    <input
-      name="telefone"
-      id="telefone"
-      placeholder="(00) 00000-0000"
-      maxlength="15"
-      required
-    >
+<div class="form">
 
-    <select name="estilo" required>
-      <option value="">Estilo de fotografia</option>
-      <option>Retrato Premium</option>
-      <option>Ensaio Executivo</option>
-      <option>Casal / Amigos</option>
-      <option>Black Experience</option>
-    </select>
+<input type="text" id="nome" placeholder="Seu nome">
 
-    <button type="submit" class="btn-primary">
-      Enviar solicitação
-    </button>
-  </form>
+<input type="email" id="email" placeholder="Seu email">
 
-  <div class="back" onclick="goBack()">← voltar</div>
+<input type="tel" id="telefone" placeholder="Seu telefone">
+
+<select id="estilo">
+<option value="">Estilo de fotografia</option>
+<option>Ensaio externo</option>
+<option>Executivo</option>
+<option>Casal</option>
+<option>Black Experience</option>
+</select>
+
+<button onclick="enviar()">Enviar solicitação</button>
 
 </div>
 
-<script src="assets/ui.js"></script>
+</div>
+
+<!-- LOADING -->
+<div id="loading">Carregando solicitação…</div>
 
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbz3k2L4xBpscC2nWRIGmgcKT7cS6Wsv4rTZo8XHuKNpMCBaTFbmvrizn59lEJZwF1kWRw/exec";
 
-/* ===== MÁSCARA TELEFONE ===== */
-const telefoneInput = document.getElementById("telefone");
+function enviar(){
 
-telefoneInput.addEventListener("input", function(e){
-  let valor = e.target.value.replace(/\D/g, "");
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const telefone = document.getElementById("telefone").value.trim();
+    const estilo = document.getElementById("estilo").value;
 
-  if (valor.length > 11) valor = valor.slice(0,11);
+    if(!nome || !email || !telefone || !estilo){
+        alert("Preencha todos os campos.");
+        return;
+    }
 
-  if (valor.length > 6){
-    valor = `(${valor.slice(0,2)}) ${valor.slice(2,7)}-${valor.slice(7)}`;
-  } else if (valor.length > 2){
-    valor = `(${valor.slice(0,2)}) ${valor.slice(2)}`;
-  } else if (valor.length > 0){
-    valor = `(${valor}`;
-  }
+    /* mostra loading imediatamente */
+    document.getElementById("loading").style.display = "flex";
 
-  e.target.value = valor;
-});
+    /* envia em segundo plano */
+    fetch(scriptURL,{
+        method:"POST",
+        body:new URLSearchParams({ nome, email, telefone, estilo })
+    });
 
-/* ===== ENVIO DO FORMULÁRIO ===== */
-document.getElementById("form").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const telefoneValido = /^\(\d{2}\) \d{5}-\d{4}$/.test(telefoneInput.value);
-
-  if (!telefoneValido){
-    alert("Digite um telefone válido no formato (00) 00000-0000");
-    return;
-  }
-
-  fetch(scriptURL, {
-    method:"POST",
-    body:new FormData(this)
-  })
-  .then(()=>{
-    /* REDIRECIONAMENTO PREMIUM */
-    window.location.href = "confirmacao-foto.html";
-  })
-  .catch(()=>{
-    alert("Erro ao enviar. Tente novamente.");
-  });
-});
+    /* redireciona após pequena pausa de UX */
+    setTimeout(()=>{
+        window.location.href = "confirmacao-foto.html";
+    }, 400);
+}
 </script>
 
 </body>
