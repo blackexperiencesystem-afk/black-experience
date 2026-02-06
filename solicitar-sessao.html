@@ -6,6 +6,28 @@
 <title>Solicitar Sessão</title>
 
 <style>
+    .back-container{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin:40px 0 20px;
+}
+
+.back-btn{
+  background:none;
+  border:none;
+  color:#777;
+  font-size:14px;
+  letter-spacing:1px;
+  text-transform:lowercase;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.back-btn:hover{
+  color:#fff;
+}
+
 body{
     margin:0;
     font-family:Arial, sans-serif;
@@ -105,10 +127,21 @@ document.getElementById("form").addEventListener("submit", e => {
         alert("Erro ao enviar. Tente novamente.");
     });
 });
-    function voltarPagina(){
-    window.history.back();
-}
+ 
 
+</script>
+<div class="back-container">
+  <button class="back-btn" onclick="goBack()">voltar</button>
+</div>
+
+<script>
+function goBack() {
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = "index.html"; // fallback seguro
+  }
+}
 </script>
 
 </body>
