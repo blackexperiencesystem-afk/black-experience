@@ -26,12 +26,8 @@ body{
   color:#ffffff;
   transition:opacity .2s ease;
 }
+.back:hover{ opacity:.8; }
 
-.back:hover{
-  opacity:.8;
-}
-
-/* BOTÃO INVISÍVEL DE ATIVAÇÃO */
 .hidden-activate{
   position:fixed;
   top:0;
@@ -42,11 +38,7 @@ body{
   z-index:999;
 }
 
-h1{
-  font-size:34px;
-  margin-bottom:10px;
-  letter-spacing:2px;
-}
+h1{ font-size:34px; margin-bottom:10px; letter-spacing:2px; }
 
 p{
   opacity:0.7;
@@ -63,13 +55,19 @@ p{
   display:flex;
   justify-content:center;
   align-items:center;
+  min-height:280px;
 }
 
 .qr-box img{
   width:260px;
   height:auto;
   border-radius:16px;
-  display:block;
+  display:none;
+}
+
+.loading{
+  opacity:.6;
+  font-size:14px;
 }
 
 .info{
@@ -90,17 +88,48 @@ e liberar sua experiência premium nesta viagem.
 </p>
 
 <div class="qr-box">
-  <img src="qrcode.png" alt="QR Code Pix">
+  <div id="loading" class="loading">Gerando QR Code Pix…</div>
+  <img id="qr" alt="QR Code Pix">
 </div>
 
 <div class="info">
-Após o pagamento, mostre a confirmação ao motorista.
+Após o pagamento, a liberação será automática.
 </div>
 
 <a href="javascript:history.back()" class="back">Voltar</a>
 
-<!-- ATIVAÇÃO INVISÍVEL AGORA LEVA PARA BOAS-VINDAS -->
-<a href="boas-vindas.html" class="hidden-activate"></a>
+<a href="boas-vindas.html" class="hidden-activate" id="ativar"></a>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby7_aYC7LuesgxYSFMcVO-yvlt-f3rOTSUevNpOqhpYS9lK2qdpt7RNw8r_7CpaYDYjvA/exec";
+
+const nome = localStorage.getItem("nome") || "Cliente";
+const telefone = localStorage.getItem("telefone") || "000";
+
+/* ===== GERAR QR PIX ===== */
+fetch(`${SCRIPT_URL}?acao=pix&nome=${nome}&telefone=${telefone}`)
+.then(r => r.json())
+.then(d => {
+  document.getElementById("qr").src = "data:image/png;base64," + d.qr;
+  document.getElementById("qr").style.display = "block";
+  document.getElementById("loading").style.display = "none";
+});
+
+/* ===== VERIFICAR PAGAMENTO AUTOMÁTICO ===== */
+setInterval(() => {
+
+  fetch(`${SCRIPT_URL}?acao=status&telefone=${telefone}`)
+  .then(r => r.text())
+  .then(status => {
+
+    if(status === "pago"){
+      window.location.href = "boas-vindas.html";
+    }
+
+  });
+
+}, 4000); // verifica a cada 4s
+</script>
 
 </body>
 </html>
