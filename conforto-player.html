@@ -58,18 +58,22 @@
 <div class="subtitle">Ajuste o ambiente da cabine</div>
 
 <!-- CLIMA -->
+<h2 class="section-title">Ar condicionado</h2>
+
 <div class="section">
-<button class="btn" onclick="select(this,'clima','Mais frio')">❄️ Mais frio</button>
-<button class="btn" onclick="select(this,'clima','Padrão')">🌡️ Padrão</button>
-<button class="btn" onclick="select(this,'clima','Mais quente')">🔥 Mais quente</button>
+  <button class="btn" onclick="select(this,'clima','Mais frio')">❄️ Mais frio</button>
+  <button class="btn" onclick="select(this,'clima','Padrão')">🌡️ Padrão</button>
+  <button class="btn" onclick="select(this,'clima','Mais quente')">🔥 Mais quente</button>
+  <button class="btn" onclick="select(this,'clima','Desligado')">⛔ Desligado</button>
 </div>
 
 <!-- AROMA -->
-<div class="section">
-<button class="btn" onclick="select(this,'aroma','Ligado')">🌿 Aroma ligado</button>
-<button class="btn" onclick="select(this,'aroma','Desligado')">⛔ Aroma desligado</button>
-</div>
+<h2 class="section-title">Aromatizador</h2>
 
+<div class="section">
+  <button class="btn" onclick="select(this,'aroma','Ligado')">🌿 Aroma ligado</button>
+  <button class="btn" onclick="select(this,'aroma','Desligado')">🚫 Aroma desligado</button>
+</div>
 <button class="confirm" onclick="enviar()">Confirmar</button>
 
 <div class="ok" id="ok">Preferências enviadas ✔</div>
