@@ -3,21 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Boas-vindas • Black Experience</title>
+<title>Experiência a Bordo • Black Experience</title>
 
 <link rel="stylesheet" href="assets/style.css">
 
 <style>
 .container{
-    padding:48px 22px 80px;
+    padding:56px 22px 90px;
     text-align:center;
 }
 
-.menu{
+h1{
+    font-size:26px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#bfa74a;
+    font-size:15px;
+    opacity:.9;
+    margin-bottom:36px;
+}
+
+.section-title{
     margin-top:28px;
+    margin-bottom:6px;
+    font-size:14px;
+    letter-spacing:.6px;
+    color:#888;
+}
+
+.menu{
     display:flex;
     flex-direction:column;
-    gap:16px;
+    gap:14px;
 }
 
 .btn{
@@ -31,13 +50,17 @@
     transition:.2s;
 }
 
+.btn:hover{
+    border-color:#444;
+}
+
 .btn.selected{
     border-color:#d4af37;
     background:#1a1405;
 }
 
 .confirm{
-    margin-top:26px;
+    margin-top:36px;
     width:100%;
     padding:20px;
     border:none;
@@ -47,6 +70,11 @@
     background:linear-gradient(135deg,#d4af37,#f1d27a);
     color:#000;
     cursor:pointer;
+    transition:.25s;
+}
+
+.confirm:hover{
+    transform:scale(1.02);
 }
 
 /* LOADING PREMIUM */
@@ -69,38 +97,38 @@
 
 <div class="container">
 
-<h1>Boas-vindas</h1>
+<h1>Prepare sua Experiência a Bordo</h1>
 
 <div class="subtitle">
-Escolha sua bebida e snack para começar sua experiência.
+Escolha os detalhes que vão acompanhar seu momento VIP.
 </div>
 
 <!-- BEBIDAS -->
-<div class="menu">
-<strong>Bebidas</strong>
+<div class="section-title">BEBIDAS</div>
 
+<div class="menu">
 <div class="btn" onclick="selectSingle(this,'bebida','Água sem gás')">💧 Água sem gás</div>
 <div class="btn" onclick="selectSingle(this,'bebida','Água com gás')">🥤 Água com gás</div>
 <div class="btn" onclick="selectSingle(this,'bebida','Mini Coca-Cola')">🥤 Mini Coca-Cola</div>
 </div>
 
 <!-- SNACKS -->
-<div class="menu">
-<strong>Snacks</strong>
+<div class="section-title">SNACKS</div>
 
+<div class="menu">
 <div class="btn" onclick="selectSingle(this,'snack','Ruffles')">🍟 Ruffles</div>
 <div class="btn" onclick="selectSingle(this,'snack','KitKat')">🍫 KitKat</div>
 <div class="btn" onclick="selectSingle(this,'snack','Amendoim')">🥜 Amendoim</div>
 </div>
 
 <button class="confirm" onclick="enviarPedido()">
-Entrar na Área VIP
+Confirmar minha Experiência VIP
 </button>
 
 </div>
 
 <!-- LOADING -->
-<div id="loading">Carregando experiência…</div>
+<div id="loading">Preparando sua experiência…</div>
 
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycby_zbIn5uEdlBhk-1F9SGQ5jiDbWb3Zks8Yzn859i-SIwjpM-NBBk6dSGFzgiOgGDfM7A/exec";
@@ -128,16 +156,13 @@ function enviarPedido(){
         return;
     }
 
-    /* mostra loading imediato */
     document.getElementById("loading").style.display = "flex";
 
-    /* envia em segundo plano */
     fetch(scriptURL,{
         method:"POST",
         body:new URLSearchParams({ bebida, snack })
     });
 
-    /* entra rápido na VIP */
     setTimeout(()=>{
         window.location.href = "vip.html";
     }, 300);
