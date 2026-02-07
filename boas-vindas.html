@@ -9,72 +9,77 @@
 
 <style>
 .container{
-    padding:56px 22px 90px;
+    padding:64px 24px 100px;
     text-align:center;
+    max-width:420px;
+    margin:auto;
 }
 
 h1{
-    font-size:26px;
-    margin-bottom:10px;
+    font-size:24px;
+    font-weight:500;
+    margin-bottom:8px;
 }
 
 .subtitle{
-    color:#bfa74a;
-    font-size:15px;
-    opacity:.9;
-    margin-bottom:36px;
+    color:#9a9a9a;
+    font-size:14px;
+    margin-bottom:44px;
 }
 
 .section-title{
-    margin-top:28px;
-    margin-bottom:6px;
-    font-size:14px;
-    letter-spacing:.6px;
-    color:#888;
+    margin:32px 0 10px;
+    font-size:12px;
+    letter-spacing:1.2px;
+    color:#6f6f6f;
 }
 
 .menu{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:12px;
 }
 
+/* BOTÕES BLACK MINIMAL */
 .btn{
-    padding:18px;
-    border-radius:18px;
-    border:1px solid #2a2a2a;
-    background:#0b0b0b;
-    color:#fff;
-    font-size:16px;
+    padding:18px 20px;
+    border-radius:16px;
+    border:1px solid #262626;
+    background:#0a0a0a;
+    color:#f2f2f2;
+    font-size:15px;
     cursor:pointer;
-    transition:.2s;
+    transition:.18s ease;
 }
 
 .btn:hover{
-    border-color:#444;
+    border-color:#3a3a3a;
+    background:#0f0f0f;
 }
 
 .btn.selected{
-    border-color:#d4af37;
-    background:#1a1405;
+    border-color:#c6a94a;
+    background:#15120a;
+    color:#fff;
 }
 
+/* BOTÃO FINAL */
 .confirm{
-    margin-top:36px;
+    margin-top:44px;
     width:100%;
-    padding:20px;
+    padding:18px;
     border:none;
-    border-radius:40px;
-    font-size:18px;
+    border-radius:36px;
+    font-size:16px;
     font-weight:600;
-    background:linear-gradient(135deg,#d4af37,#f1d27a);
+    background:linear-gradient(135deg,#c6a94a,#e7cc7a);
     color:#000;
     cursor:pointer;
-    transition:.25s;
+    transition:.22s ease;
 }
 
 .confirm:hover{
-    transform:scale(1.02);
+    transform:translateY(-1px);
 }
 
 /* LOADING PREMIUM */
@@ -86,9 +91,9 @@ h1{
     align-items:center;
     justify-content:center;
     z-index:999;
-    font-size:16px;
+    font-size:15px;
     letter-spacing:.4px;
-    opacity:.92;
+    opacity:.94;
 }
 </style>
 </head>
@@ -107,18 +112,18 @@ Escolha os detalhes que vão acompanhar seu momento VIP.
 <div class="section-title">BEBIDAS</div>
 
 <div class="menu">
-<div class="btn" onclick="selectSingle(this,'bebida','Água sem gás')">💧 Água sem gás</div>
-<div class="btn" onclick="selectSingle(this,'bebida','Água com gás')">🥤 Água com gás</div>
-<div class="btn" onclick="selectSingle(this,'bebida','Mini Coca-Cola')">🥤 Mini Coca-Cola</div>
+<div class="btn" onclick="selectSingle(this,'bebida','Água sem gás')">Água sem gás</div>
+<div class="btn" onclick="selectSingle(this,'bebida','Água com gás')">Água com gás</div>
+<div class="btn" onclick="selectSingle(this,'bebida','Mini Coca-Cola')">Mini Coca-Cola</div>
 </div>
 
 <!-- SNACKS -->
 <div class="section-title">SNACKS</div>
 
 <div class="menu">
-<div class="btn" onclick="selectSingle(this,'snack','Ruffles')">🍟 Ruffles</div>
-<div class="btn" onclick="selectSingle(this,'snack','KitKat')">🍫 KitKat</div>
-<div class="btn" onclick="selectSingle(this,'snack','Amendoim')">🥜 Amendoim</div>
+<div class="btn" onclick="selectSingle(this,'snack','Ruffles')">Ruffles</div>
+<div class="btn" onclick="selectSingle(this,'snack','KitKat')">KitKat</div>
+<div class="btn" onclick="selectSingle(this,'snack','Amendoim')">Amendoim</div>
 </div>
 
 <button class="confirm" onclick="enviarPedido()">
