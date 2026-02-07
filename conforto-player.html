@@ -8,45 +8,108 @@
 <link rel="stylesheet" href="assets/style.css">
 
 <style>
-.container{ padding:48px 22px 80px; }
-.section{ margin-bottom:28px; text-align:left; }
+body{
+  background:#000;
+  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+
+.container{
+  max-width:480px;
+  margin:0 auto;
+  padding:48px 22px 80px;
+}
+
+/* TITULOS */
+h1{
+  font-size:34px;
+  font-weight:600;
+  text-align:center;
+  margin-bottom:6px;
+}
+
+.subtitle{
+  text-align:center;
+  opacity:.7;
+  margin-bottom:36px;
+}
+
+.section-title{
+  margin:32px 0 12px;
+  font-size:14px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#d4af37;
+  opacity:.9;
+}
+
+/* BOTÕES */
+.section{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
 
 .btn{
   width:100%;
   padding:18px;
-  margin:8px 0;
-  border-radius:16px;
+  border-radius:18px;
   border:1px solid #2a2a2a;
-  background:#0b0b0b;
+  background:linear-gradient(180deg,#0c0c0c,#050505);
   color:#fff;
   font-size:16px;
   cursor:pointer;
+  transition:.25s ease;
+}
+
+.btn:hover{
+  border-color:#444;
 }
 
 .btn.selected{
   border-color:#d4af37;
-  background:#1a1405;
+  background:linear-gradient(180deg,#1b1406,#0d0902);
+  box-shadow:0 0 0 1px rgba(212,175,55,.3), 0 6px 20px rgba(212,175,55,.15);
 }
 
+/* BOTÃO CONFIRMAR */
 .confirm{
-  margin-top:20px;
+  margin-top:36px;
   width:100%;
-  padding:18px;
+  padding:20px;
   border:none;
-  border-radius:40px;
+  border-radius:50px;
   font-size:18px;
   font-weight:600;
   background:linear-gradient(135deg,#d4af37,#f1d27a);
   color:#000;
   cursor:pointer;
+  transition:.25s;
 }
 
+.confirm:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 24px rgba(212,175,55,.35);
+}
+
+/* MENSAGEM OK */
 .ok{
   display:none;
-  margin-top:16px;
+  margin-top:18px;
+  text-align:center;
   font-size:14px;
-  opacity:.8;
+  opacity:.75;
 }
+
+/* VOLTAR */
+.back{
+  margin-top:28px;
+  text-align:center;
+  opacity:.5;
+  cursor:pointer;
+  font-size:14px;
+}
+.back:hover{ opacity:.9; }
 </style>
 </head>
 
@@ -57,8 +120,8 @@
 <h1>Conforto</h1>
 <div class="subtitle">Ajuste o ambiente da cabine</div>
 
-<!-- CLIMA -->
-<h2 class="section-title">Ar condicionado</h2>
+<!-- AR CONDICIONADO -->
+<div class="section-title">Ar condicionado</div>
 
 <div class="section">
   <button class="btn" onclick="select(this,'clima','Mais frio')">❄️ Mais frio</button>
@@ -67,22 +130,21 @@
   <button class="btn" onclick="select(this,'clima','Desligado')">⛔ Desligado</button>
 </div>
 
-<!-- AROMA -->
-<h2 class="section-title">Aromatizador</h2>
+<!-- AROMATIZADOR -->
+<div class="section-title">Aromatizador</div>
 
 <div class="section">
   <button class="btn" onclick="select(this,'aroma','Ligado')">🌿 Aroma ligado</button>
   <button class="btn" onclick="select(this,'aroma','Desligado')">🚫 Aroma desligado</button>
 </div>
-<button class="confirm" onclick="enviar()">Confirmar</button>
 
-<div class="ok" id="ok">Preferências enviadas ✔</div>
+<button class="confirm" onclick="enviar()">Confirmar preferências</button>
 
-<div class="back" onclick="goBack()">← voltar</div>
+<div class="ok" id="ok">Preferências enviadas com sucesso ✔</div>
+
+<div class="back" onclick="history.back()">← voltar</div>
 
 </div>
-
-<script src="assets/ui.js"></script>
 
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycby7_aYC7LuesgxYSFMcVO-yvlt-f3rOTSUevNpOqhpYS9lK2qdpt7RNw8r_7CpaYDYjvA/exec";
