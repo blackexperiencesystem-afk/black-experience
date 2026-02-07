@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Ativar Passe Premium</title>
 
 <style>
@@ -24,50 +23,23 @@ body {
 }
 
 h1 {
-  font-weight: 600;
   margin-bottom: 10px;
 }
 
 p {
   color: #aaa;
-  font-size: 14px;
 }
 
 .qr-box {
   margin: 30px auto;
-  width: 240px;
-  height: 240px;
-  border-radius: 20px;
+  padding: 20px;
   background: #111;
+  border-radius: 20px;
+  width: 260px;
+  height: 260px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.qr-box img {
-  width: 200px;
-}
-
-.codigo {
-  background: #111;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 12px;
-  word-break: break-all;
-  margin-top: 15px;
-}
-
-.status {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #0f0;
-}
-
-.link-voltar {
-  display: block;
-  margin-top: 25px;
-  color: #888;
-  text-decoration: none;
 }
 </style>
 </head>
@@ -76,63 +48,51 @@ p {
 
 <div class="container">
 
-<h1>Ativar Passe Premium</h1>
-<p>Escaneie o QR Code abaixo para pagar via Pix e liberar sua experiência premium.</p>
+  <h1>Ativar Passe Premium</h1>
+  <p>Escaneie o QR Code abaixo para pagar via Pix e liberar sua experiência.</p>
 
-<div class="qr-box" id="qrBox">
-  <span>Gerando QR Code...</span>
-</div>
+  <div class="qr-box">
+    <!-- AQUI FICA O QR CODE -->
+    <img id="qr" width="220">
+  </div>
 
-<div class="codigo" id="codigoPix"></div>
-<div class="status" id="statusPagamento"></div>
-
-<a class="link-voltar" href="index.html">Voltar</a>
+  <p>A liberação acontece automaticamente após o pagamento.</p>
 
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbwxW4wW9kh2tX82H6UOAnt-biAIMNs0DT_QFZuD91IJuJf_Uq2puA6S2NJtw9Mf3vzg/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxpfMCe1AqUSt1e3YM-8S7kUtOzWLNTxpDtslOoQbcd0xGuPxtZCJ98VJIpFSTZpz0_/exec";
 
 let paymentId = null;
 
-/* ================= GERAR PIX ================= */
+/* CRIAR PIX */
 async function gerarPix() {
   const res = await fetch(API_URL + "?action=criar_pix");
   const data = await res.json();
 
   paymentId = data.id;
 
-  document.getElementById("qrBox").innerHTML =
-    `<img src="data:image/png;base64,${data.qr_code_base64}">`;
-
-  document.getElementById("codigoPix").innerText =
-    data.qr_code;
+  document.getElementById("qr").src =
+    "data:image/png;base64," + data.qr_code_base64;
 
   verificarPagamento();
 }
 
-/* ================= VERIFICAR PAGAMENTO ================= */
-async function verificarPagamento() {
+/* VERIFICAR PAGAMENTO AUTOMÁTICO */
+function verificarPagamento() {
   const intervalo = setInterval(async () => {
 
-    const res = await fetch(API_URL + "?action=verificar&id=" + paymentId);
+    const res = await fetch(API_URL + "?action=verificar_pagamento&id=" + paymentId);
     const data = await res.json();
 
     if (data.status === "approved") {
       clearInterval(intervalo);
-
-      document.getElementById("statusPagamento").innerText =
-        "Pagamento aprovado! Liberando acesso...";
-
-      setTimeout(() => {
-        window.location.href = "boas-vindas.html?token=" + data.token;
-      }, 1500);
+      window.location.href = "boas-vindas.html";
     }
 
   }, 4000);
 }
 
-/* iniciar automaticamente */
 gerarPix();
 </script>
 
