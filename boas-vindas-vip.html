@@ -27,17 +27,15 @@ body {
 h1 {
   font-size: 28px;
   margin-bottom: 12px;
-  letter-spacing: 0.5px;
 }
 
 p {
   color: #bbb;
-  font-size: 16px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .button {
-  display: inline-block;
+  display: none;
   padding: 16px 28px;
   border-radius: 40px;
   background: linear-gradient(135deg, #00ff99, #00cc66);
@@ -45,19 +43,21 @@ p {
   font-weight: 600;
   text-decoration: none;
   font-size: 16px;
-  transition: all 0.3s ease;
   box-shadow: 0 0 20px rgba(0,255,153,0.25);
 }
 
-.button:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 0 30px rgba(0,255,153,0.45);
+.loader {
+  margin: 20px auto;
+  border: 4px solid #333;
+  border-top: 4px solid #00ff99;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
 }
 
-.lock {
-  font-size: 42px;
-  margin-bottom: 18px;
-  opacity: 0.9;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 @keyframes fadeIn {
@@ -71,18 +71,71 @@ p {
 
 <div class="container">
 
-  <div class="lock">🔓</div>
+  <h1 id="titulo">Verificando seu acesso VIP...</h1>
+  <p id="texto">Aguarde alguns segundos.</p>
 
-  <h1>Bem-vindo à sua Experiência VIP</h1>
+  <div class="loader" id="loader"></div>
 
-  <p>Personalize agora sua recepção a bordo e prepare-se para um momento exclusivo.</p>
-
-  <!-- BOTÃO PARA A PRÓXIMA ETAPA -->
-  <a class="button" href="boas-vindas.html">
+  <a class="button" id="btnEntrar" href="boas-vindas.html">
     Entrar na Experiência VIP
   </a>
 
 </div>
+
+<script>
+/* ===== URL DO SEU APPS SCRIPT ===== */
+const API_URL = "https://script.google.com/macros/s/AKfycbyXddHG3xJt4Z38aWCs5E5Q7Glh_SeD_A3PzlqWde5iVVsFSl4Bud3HfEP-QaV3zICi/exec";
+
+/* ===== PEGAR TOKEN DA URL ===== */
+const params = new URLSearchParams(window.location.search);
+const token = params.get("token");
+
+/* ===== BLOQUEAR ACESSO ===== */
+function bloquear() {
+  document.getElementById("titulo").innerText = "Acesso não autorizado";
+  document.getElementById("texto").innerText =
+    "Este acesso é exclusivo para clientes que realizaram o pagamento.";
+  document.getElementById("loader").style.display = "none";
+}
+
+/* ===== LIBERAR ACESSO ===== */
+function liberar() {
+  document.getElementById("titulo").innerText =
+    "Bem-vindo à sua Experiência VIP";
+  document.getElementById("texto").innerText =
+    "Personalize agora sua recepção a bordo.";
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("btnEntrar").style.display = "inline-block";
+}
+
+/* ===== VALIDAR TOKEN NO SERVIDOR ===== */
+async function validarToken() {
+
+  if (!token) {
+    bloquear();
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      API_URL + "?action=validar_token&token=" + token
+    );
+
+    const data = await res.json();
+
+    if (data.valido === true) {
+      liberar();
+    } else {
+      bloquear();
+    }
+
+  } catch (e) {
+    bloquear();
+  }
+}
+
+validarToken();
+</script>
 
 </body>
 </html>
