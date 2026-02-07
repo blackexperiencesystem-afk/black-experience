@@ -3,132 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ativar Passe Premium</title>
 
 <style>
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;
-  background:#0b0b0b;
-  color:#ffffff;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  text-align:center;
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.back{
-  font-size:14px;
-  opacity:.45;
-  text-decoration:none;
-  color:#ffffff;
-  transition:opacity .2s ease;
-}
-.back:hover{ opacity:.8; }
-
-.hidden-activate{
-  position:fixed;
-  top:0;
-  right:0;
-  width:80px;
-  height:80px;
-  opacity:0;
-  z-index:999;
+.container {
+  text-align: center;
+  max-width: 400px;
 }
 
-h1{ font-size:34px; margin-bottom:10px; letter-spacing:2px; }
-
-p{
-  opacity:0.7;
-  max-width:420px;
-  margin-bottom:24px;
-  line-height:1.5;
+h1 {
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.qr-box{
-  background:#111;
-  border:1px solid #333;
-  border-radius:22px;
-  padding:24px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:280px;
+p {
+  color: #aaa;
+  font-size: 14px;
 }
 
-.qr-box img{
-  width:260px;
-  height:auto;
-  border-radius:16px;
-  display:none;
+.qr-box {
+  margin: 30px auto;
+  width: 240px;
+  height: 240px;
+  border-radius: 20px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.loading{
-  opacity:.6;
-  font-size:14px;
+.qr-box img {
+  width: 200px;
 }
 
-.info{
-  margin-top:24px;
-  opacity:.7;
-  font-size:15px;
+.codigo {
+  background: #111;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  word-break: break-all;
+  margin-top: 15px;
+}
+
+.status {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #0f0;
+}
+
+.link-voltar {
+  display: block;
+  margin-top: 25px;
+  color: #888;
+  text-decoration: none;
 }
 </style>
 </head>
 
 <body>
 
+<div class="container">
+
 <h1>Ativar Passe Premium</h1>
+<p>Escaneie o QR Code abaixo para pagar via Pix e liberar sua experiência premium.</p>
 
-<p>
-Escaneie o QR Code abaixo para realizar o pagamento via Pix  
-e liberar sua experiência premium nesta viagem.
-</p>
-
-<div class="qr-box">
-  <div id="loading" class="loading">Gerando QR Code Pix…</div>
-  <img id="qr" alt="QR Code Pix">
+<div class="qr-box" id="qrBox">
+  <span>Gerando QR Code...</span>
 </div>
 
-<div class="info">
-Após o pagamento, a liberação será automática.
+<div class="codigo" id="codigoPix"></div>
+<div class="status" id="statusPagamento"></div>
+
+<a class="link-voltar" href="index.html">Voltar</a>
+
 </div>
-
-<a href="javascript:history.back()" class="back">Voltar</a>
-
-<a href="boas-vindas.html" class="hidden-activate" id="ativar"></a>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyiqcIF3QzcnUZIRf5ob0SwaU_gFSMKr7ks0iPsdbx74pk-h7Xq34p-U02qMZo3DfmbwQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbz62Z9UEo3iBHp1WVt76zC65-XqMr4kvizEej5dWZdaFwwLKlHAPrbU4wVF9lW8DNkN/exec";
 
-const nome = localStorage.getItem("nome") || "Cliente";
-const telefone = localStorage.getItem("telefone") || "000";
+let paymentId = null;
 
-/* ===== GERAR QR PIX ===== */
-fetch(`${SCRIPT_URL}?acao=pix&nome=${nome}&telefone=${telefone}`)
-.then(r => r.json())
-.then(d => {
-  document.getElementById("qr").src = "data:image/png;base64," + d.qr;
-  document.getElementById("qr").style.display = "block";
-  document.getElementById("loading").style.display = "none";
-});
+/* ================= GERAR PIX ================= */
+async function gerarPix() {
+  const res = await fetch(API_URL + "?action=criar_pix");
+  const data = await res.json();
 
-/* ===== VERIFICAR PAGAMENTO AUTOMÁTICO ===== */
-setInterval(() => {
+  paymentId = data.id;
 
-  fetch(`${SCRIPT_URL}?acao=status&telefone=${telefone}`)
-  .then(r => r.text())
-  .then(status => {
+  document.getElementById("qrBox").innerHTML =
+    `<img src="data:image/png;base64,${data.qr_code_base64}">`;
 
-    if(status === "pago"){
-      window.location.href = "boas-vindas.html";
+  document.getElementById("codigoPix").innerText =
+    data.qr_code;
+
+  verificarPagamento();
+}
+
+/* ================= VERIFICAR PAGAMENTO ================= */
+async function verificarPagamento() {
+  const intervalo = setInterval(async () => {
+
+    const res = await fetch(API_URL + "?action=verificar&id=" + paymentId);
+    const data = await res.json();
+
+    if (data.status === "approved") {
+      clearInterval(intervalo);
+
+      document.getElementById("statusPagamento").innerText =
+        "Pagamento aprovado! Liberando acesso...";
+
+      setTimeout(() => {
+        window.location.href = "boas-vindas.html?token=" + data.token;
+      }, 1500);
     }
 
-  });
+  }, 4000);
+}
 
-}, 4000); // verifica a cada 4s
+/* iniciar automaticamente */
+gerarPix();
 </script>
 
 </body>
