@@ -20,6 +20,7 @@ body {
 .container {
   text-align: center;
   max-width: 400px;
+  padding: 20px;
 }
 
 h1 {
@@ -41,6 +42,12 @@ p {
   align-items: center;
   justify-content: center;
 }
+
+.status {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #0f0;
+}
 </style>
 </head>
 
@@ -49,50 +56,78 @@ p {
 <div class="container">
 
   <h1>Ativar Passe Premium</h1>
-  <p>Escaneie o QR Code abaixo para pagar via Pix e liberar sua experiência.</p>
+  <p>Escaneie o QR Code abaixo para pagar via Pix e liberar sua experiência VIP.</p>
 
   <div class="qr-box">
-    <!-- AQUI FICA O QR CODE -->
     <img id="qr" width="220">
   </div>
 
-  <p>A liberação acontece automaticamente após o pagamento.</p>
+  <p class="status" id="status">Gerando pagamento...</p>
 
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycbxpfMCe1AqUSt1e3YM-8S7kUtOzWLNTxpDtslOoQbcd0xGuPxtZCJ98VJIpFSTZpz0_/exec";
+/* ======== COLE AQUI SUA URL DO APPS SCRIPT ======== */
+const API_URL = "https://script.google.com/macros/s/AKfycbyXddHG3xJt4Z38aWCs5E5Q7Glh_SeD_A3PzlqWde5iVVsFSl4Bud3HfEP-QaV3zICi/exec";
 
 let paymentId = null;
 
-/* CRIAR PIX */
+/* ========= CRIAR PIX ========= */
 async function gerarPix() {
-  const res = await fetch(API_URL + "?action=criar_pix");
-  const data = await res.json();
-
-  paymentId = data.id;
-
-  document.getElementById("qr").src =
-    "data:image/png;base64," + data.qr_code_base64;
-
-  verificarPagamento();
-}
-
-/* VERIFICAR PAGAMENTO AUTOMÁTICO */
-function verificarPagamento() {
-  const intervalo = setInterval(async () => {
-
-    const res = await fetch(API_URL + "?action=verificar_pagamento&id=" + paymentId);
+  try {
+    const res = await fetch(API_URL + "?action=criar_pix");
     const data = await res.json();
 
-    if (data.status === "approved") {
-      clearInterval(intervalo);
-      window.location.href = "boas-vindas.html";
+    paymentId = data.id;
+
+    document.getElementById("qr").src =
+      "data:image/png;base64," + data.qr_code_base64;
+
+    document.getElementById("status").innerText =
+      "Aguardando pagamento...";
+
+    verificarPagamento();
+
+  } catch (err) {
+    document.getElementById("status").innerText =
+      "Erro ao gerar pagamento.";
+  }
+}
+
+/* ========= VERIFICAR PAGAMENTO AUTOMÁTICO ========= */
+function verificarPagamento() {
+
+  const intervalo = setInterval(async () => {
+
+    try {
+      const res = await fetch(
+        API_URL + "?action=verificar_pagamento&id=" + paymentId
+      );
+
+      const data = await res.json();
+
+      if (data.status === "approved") {
+
+        clearInterval(intervalo);
+
+        document.getElementById("status").innerText =
+          "Pagamento aprovado! Liberando acesso...";
+
+        /* REDIRECIONA COM TOKEN VIP */
+        setTimeout(() => {
+          window.location.href =
+            "boas-vindas.html?token=" + data.token;
+        }, 1500);
+      }
+
+    } catch (err) {
+      console.log("Erro ao verificar pagamento");
     }
 
   }, 4000);
 }
 
+/* ========= INICIAR ========= */
 gerarPix();
 </script>
 
